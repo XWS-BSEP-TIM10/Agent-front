@@ -56,8 +56,6 @@ export class RegistrationComponent implements OnInit {
 
   registerUser() {
 
-
-
   }
 
   togglePass(id: string, toggleId: string) {
