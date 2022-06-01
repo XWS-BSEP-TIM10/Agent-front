@@ -1,0 +1,39 @@
+.table {
+    padding: 3em;
+    width: 70%;
+    margin-left: 19em;
+}
+
+.headers {
+    font-size: 20px;
+    padding: 13px;
+}
+
+.content {
+    padding: 13px;
+}
+
+.contentAverage{
+    padding: 13px;
+    color: lightcoral;
+}
+
+.content-users {
+    padding: 13px;
+    width: 10%;
+}
+
+.minHeader, .maxHeader{
+    width: 20%;
+    font-size: 20px;
+    padding: 13px;
+}
+
+.tableRow{
+    border: none;
+    border-bottom: 1px solid lightgray;
+}
+
+.tableHeadRow{
+    border-bottom: 1px solid gray;
+}

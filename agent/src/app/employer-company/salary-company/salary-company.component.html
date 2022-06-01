@@ -1,0 +1,19 @@
+<table class="table">
+    <tr class="tableHeadRow">
+        <th class="headers">Position</th>
+        <th class="headers">Salary (average)</th>
+        <th class="minHeader">Min</th>
+        <th class="maxHeader">Max</th>
+        <th></th>
+    </tr>
+
+    <tr class="tableRow" *ngFor="let position of salaries">
+
+        <td class="content">{{position.position}}</td>
+        <td class="contentAverage">{{position.value}} EUR</td>
+        <td class="content">{{position.lowest}} EUR</td>
+        <td class="content">{{position.highest}} EUR</td>
+        <td class="content-users">({{position.users}})</td>
+    </tr>
+
+</table>
