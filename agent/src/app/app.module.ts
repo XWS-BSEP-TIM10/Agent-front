@@ -13,6 +13,7 @@ import { EmployerCompanyComponent } from './employer-company/employer-company.co
 import { AboutCompanyComponent } from '../app/employer-company/about-company/about-company.component';
 import { CommentsCompanyComponent } from '../app/employer-company/comments-company/comments-company.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InterviewCompanyComponent } from './employer-company/interview-company/interview-company.component';
 import { SalaryCompanyComponent } from './employer-company/salary-company/salary-company.component';
 import { JobsCompanyComponent } from './employer-company/jobs-company/jobs-company.component';
 
@@ -28,7 +29,8 @@ import { JobsCompanyComponent } from './employer-company/jobs-company/jobs-compa
     AboutCompanyComponent,
     CommentsCompanyComponent,
     SalaryCompanyComponent,
-    JobsCompanyComponent
+    JobsCompanyComponent,
+    InterviewCompanyComponent
   ],
   imports: [
     BrowserModule,
