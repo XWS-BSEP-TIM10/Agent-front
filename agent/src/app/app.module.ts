@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InterviewCompanyComponent } from './employer-company/interview-company/interview-company.component';
 import { SalaryCompanyComponent } from './employer-company/salary-company/salary-company.component';
 import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
+import { JobsCompanyComponent } from './employer-company/jobs-company/jobs-company.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RegistrationRequestsComponent } from './registration-requests/registrat
     CommentsCompanyComponent,
     InterviewCompanyComponent,
     SalaryCompanyComponent,
-    RegistrationRequestsComponent
+    RegistrationRequestsComponent,
+    JobsCompanyComponent
   ],
   imports: [
     BrowserModule,
