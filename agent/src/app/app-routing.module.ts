@@ -9,6 +9,7 @@ import {AboutCompanyComponent} from '../app/employer-company/about-company/about
 import {CommentsCompanyComponent} from '../app/employer-company/comments-company/comments-company.component'
 import {InterviewCompanyComponent} from '../app/employer-company/interview-company/interview-company.component'
 import { SalaryCompanyComponent } from '../app/employer-company/salary-company/salary-company.component'
+import { RegistrationRequestsComponent} from '../app/registration-requests/registration-requests.component'
 
 const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
                         { path: 'login', component: LoginComponent },
@@ -21,7 +22,9 @@ const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
                             { path: 'interview-company', component: InterviewCompanyComponent, outlet: 'company-details'},
                             { path: 'salary-company', component: SalaryCompanyComponent,  outlet: 'company-details'}
                           ]
-                        }];
+                        },
+                        {path : 'registration-requests', component: RegistrationRequestsComponent}
+                      ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
