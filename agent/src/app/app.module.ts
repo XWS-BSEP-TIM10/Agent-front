@@ -9,6 +9,9 @@ import { FrontPageComponentComponent } from './front-page-component/front-page-c
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { EmployerCompanyComponent } from './employer-company/employer-company.component';
+import { AboutCompanyComponent } from './about-company/about-company.component';
+import { CommentsCompanyComponent } from './comments-company/comments-company.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { UserPageComponent } from './user-page/user-page.component';
     FrontPageComponentComponent,
     LoginComponent,
     RegistrationComponent,
-    UserPageComponent
+    UserPageComponent,
+    EmployerCompanyComponent,
+    AboutCompanyComponent,
+    CommentsCompanyComponent
   ],
   imports: [
     BrowserModule,
