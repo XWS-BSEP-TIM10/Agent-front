@@ -18,21 +18,7 @@
 -->
 <table style="width: 17%;margin-left:19.3em;zoom:1.4" >
     <tr>
-        <td>
-<table  border="1 px solid black">
-    <tr style="border-bottom: 1px solid black;">
-        <td style="text-align:center;padding: 0.1em;zoom:1.4"><b>{{dataItem.rating | number : '.2-2'}}</b></td>
-    </tr>
-    <tr>
-        <td style="background-color: rgb(246,246,246)"><ngb-rating style="color:blue" [max]="5" [(rate)]="dataItem.rating" [readonly]="true">
-            <ng-template let-fill="fill" let-index="index">
-                <span class="star" [class.filled]="fill === 100">&#9733;</span>
-              </ng-template>
-        </ngb-rating></td>
-    </tr>
-</table>
-</td>
-<td style="padding-left:1em">
+<td>
     {{dataItem.position}} <br>
     <span style="zoom:0.7"><i>{{dataItem.creationDate}}</i></span>
 </td>
