@@ -14,6 +14,7 @@ import { AboutCompanyComponent } from '../app/employer-company/about-company/abo
 import { CommentsCompanyComponent } from '../app/employer-company/comments-company/comments-company.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SalaryCompanyComponent } from './employer-company/salary-company/salary-company.component';
+import { JobsCompanyComponent } from './employer-company/jobs-company/jobs-company.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SalaryCompanyComponent } from './employer-company/salary-company/salary
     EmployerCompanyComponent,
     AboutCompanyComponent,
     CommentsCompanyComponent,
-    SalaryCompanyComponent
+    SalaryCompanyComponent,
+    JobsCompanyComponent
   ],
   imports: [
     BrowserModule,

@@ -38,7 +38,7 @@
             <li class="listItem"><a class="nav-link scrollto" [routerLink]="['/employer-company', { outlets: { 'company-details': ['comments-company'] } }]" style="cursor: pointer;">Comments</a></li>
             <li class="listItem"><a class="nav-link scrollto" [routerLink]="['/employer-company', { outlets: { 'company-details': ['salary-company'] } }]" style="cursor: pointer;">Salary</a></li>
             <li class="listItem"><a class="nav-link scrollto" routerLink="" style="cursor: pointer;">Interview</a></li>
-            <li class="listItem"><a class="nav-link scrollto" routerLink="" style="cursor: pointer;">Job offers</a></li>
+            <li class="listItem"><a class="nav-link scrollto" [routerLink]="['/employer-company', { outlets: { 'company-details': ['jobs-company'] } }]" style="cursor: pointer;">Job offers</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
