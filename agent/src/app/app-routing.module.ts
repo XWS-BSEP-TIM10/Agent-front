@@ -8,6 +8,7 @@ import {EmployerCompanyComponent} from './employer-company/employer-company.comp
 import {AboutCompanyComponent} from '../app/employer-company/about-company/about-company.component'
 import {CommentsCompanyComponent} from '../app/employer-company/comments-company/comments-company.component'
 import {InterviewCompanyComponent} from '../app/employer-company/interview-company/interview-company.component'
+import { SalaryCompanyComponent } from '../app/employer-company/salary-company/salary-company.component'
 
 const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
                         { path: 'login', component: LoginComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
                           [
                             { path: 'about-company',   component: AboutCompanyComponent, outlet:'company-details'},
                             { path: 'comments-company', component: CommentsCompanyComponent,  outlet: 'company-details'},
-                            { path: 'interview-company', component: InterviewCompanyComponent, outlet: 'company-details'}
+                            { path: 'interview-company', component: InterviewCompanyComponent, outlet: 'company-details'},
+                            { path: 'salary-company', component: SalaryCompanyComponent,  outlet: 'company-details'}
                           ]
                         }];
 
