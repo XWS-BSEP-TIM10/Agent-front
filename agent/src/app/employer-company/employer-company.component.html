@@ -34,12 +34,8 @@
     </div>
     <nav id="navbar" class="navbar" style="margin-left: -60em; margin-top:-7em">
         <ul>
-            <li class="listItem"><a class="nav-link scrollto" [routerLink]="[{
-                outlets:{
-                    'company-details' : ['about-company']
-                }
-            }]" style="cursor: pointer;">About</a></li>
-            <li class="listItem"><a class="nav-link scrollto" routerLink="/comments-company" style="cursor: pointer;">Comments</a></li>
+            <li class="listItem"><a class="nav-link scrollto" [routerLink]="['/employer-company', { outlets: { 'company-details': ['about-company'] } }]" style="cursor: pointer;">About</a></li>
+            <li class="listItem"><a class="nav-link scrollto" [routerLink]="['/employer-company', { outlets: { 'company-details': ['comments-company'] } }]" style="cursor: pointer;">Comments</a></li>
             <li class="listItem"><a class="nav-link scrollto" routerLink="" style="cursor: pointer;">Salary</a></li>
             <li class="listItem"><a class="nav-link scrollto" routerLink="" style="cursor: pointer;">Interview</a></li>
             <li class="listItem"><a class="nav-link scrollto" routerLink="" style="cursor: pointer;">Job offers</a></li>
