@@ -11,6 +11,7 @@ import {InterviewCompanyComponent} from '../app/employer-company/interview-compa
 import { SalaryCompanyComponent } from '../app/employer-company/salary-company/salary-company.component'
 import { RegistrationRequestsComponent} from '../app/registration-requests/registration-requests.component'
 import { JobsCompanyComponent } from './employer-company/jobs-company/jobs-company.component';
+import { CompaniesComponent } from './companies/companies.component';
 
 const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
                         { path: 'login', component: LoginComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
                             { path: 'interview-company', component: InterviewCompanyComponent, outlet: 'company-details'}
                           ]
                         },
-                        {path : 'registration-requests', component: RegistrationRequestsComponent}
+                        {path : 'registration-requests', component: RegistrationRequestsComponent},
+                        {path : 'companies', component: CompaniesComponent}
                       ];
 
 @NgModule({

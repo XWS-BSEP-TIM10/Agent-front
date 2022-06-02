@@ -3,7 +3,8 @@
     integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
 
 <div class="container" *ngIf="!addingJob">
-    <button type="button" class="btn btn-primary" id="addJob" (click)="addJob()"><i class="fa fa-plus" aria-hidden="true" (click)="addJob()"></i></button>
+    <button type="button" class="btn btn-primary" id="addJob" (click)="addJob()"><i class="fa fa-plus"
+            aria-hidden="true" (click)="addJob()"></i></button>
 
     <div class="row">
         <div class="col-lg-10 mx-auto">
@@ -49,28 +50,36 @@
 <div class="addJob" *ngIf="addingJob">
     <div class="wrapper fadeInDown">
         <div id="formContent">
-          <i class="fa fa-close" aria-hidden="true" (click)="exitAddJob()" style="position: relative; left: 14em;"></i>
-          <form [formGroup]="addJobForm">
-            <input type="text" class="fadeIn second" placeholder="Title" formControlName="title">
-            <input type="text" class="fadeIn second" placeholder="Position" formControlName="position">
-            <input type="text" class="fadeIn second" placeholder="Description" formControlName="description">
-            <input type="text" class="fadeIn second" placeholder="Requirement" formControlName="requirement" style="width: 75%">
-            <button type="button" class="btn btn-primary" id="addRequirement" (click)="addRequirement()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-            <table class="reqTable" *ngIf="requirements.length != 0">
-                <tr class="reqHead">
-                    <th class="caption">Requirements</th>
-                    <th></th>
-                </tr>
-                <tr *ngFor="let requirement of requirements; let i = index" class="reqBody">
-                    <td class="content">{{requirement}}</td>
-                    <td class="button">
-                        <button type="button" class="btn btn-danger" (click)="deleteRequirement(i)"><i class="fa fa-close" aria-hidden="true"></i></button>
-                    </td>
-                </tr>
-            </table>
-            <input type="submit" class="fadeIn fourth" value="Add job" (click)="addNewJob()"/>
-          </form>
+            <i class="fa fa-close" aria-hidden="true" (click)="exitAddJob()"
+                style="position: relative; left: 14em; bottom: 3em;"></i>
+            <form [formGroup]="addJobForm">
+                <input type="text" class="fadeIn second" placeholder="Title" formControlName="title">
+                <input type="text" class="fadeIn second" placeholder="Position" formControlName="position">
+                <input type="text" class="fadeIn second" placeholder="Description" formControlName="description">
+                <input type="text" class="fadeIn second" placeholder="Requirement" formControlName="requirement"
+                    style="width: 75%">
+                <button type="button" class="btn btn-primary" id="addRequirement" (click)="addRequirement()"><i
+                        class="fa fa-plus" aria-hidden="true"></i></button>
+                <table class="reqTable" *ngIf="requirements.length != 0">
+                    <tr class="reqHead">
+                        <th class="caption">Requirements</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let requirement of requirements; let i = index" class="reqBody">
+                        <td class="content">{{requirement}}</td>
+                        <td class="button">
+                            <button type="button" class="btn btn-danger" (click)="deleteRequirement(i)"><i
+                                    class="fa fa-close" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" style="margin-left: 30%; margin-right: -25%; padding: 2.3%; margin-top: 2%;">
+                    <label class="form-check-label" for="exampleCheck1" style="margin-top: 2%">Share on dislinkt</label>
+                </div>
+                <input type="submit" class="fadeIn fourth" value="Add job" (click)="addNewJob()" />
+            </form>
         </div>
-      </div>
-      
+    </div>
+
 </div>

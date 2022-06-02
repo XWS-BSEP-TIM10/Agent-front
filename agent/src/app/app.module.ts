@@ -17,6 +17,7 @@ import { InterviewCompanyComponent } from './employer-company/interview-company/
 import { SalaryCompanyComponent } from './employer-company/salary-company/salary-company.component';
 import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
 import { JobsCompanyComponent } from './employer-company/jobs-company/jobs-company.component';
+import { CompaniesComponent } from './companies/companies.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { JobsCompanyComponent } from './employer-company/jobs-company/jobs-compa
     InterviewCompanyComponent,
     SalaryCompanyComponent,
     RegistrationRequestsComponent,
-    JobsCompanyComponent
+    JobsCompanyComponent,
+    CompaniesComponent
   ],
   imports: [
     BrowserModule,

@@ -30,7 +30,8 @@ export class JobsCompanyComponent implements OnInit {
     title: new FormControl('', Validators.required),
     position: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    requirement: new FormControl('', Validators.required)
+    requirement: new FormControl('', Validators.required),
+    dislinkt: new FormControl()
   })
 
   constructor() { }
