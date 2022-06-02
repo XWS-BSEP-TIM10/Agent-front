@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-employer-company',
   templateUrl: './employer-company.component.html',
   styleUrls: ['./employer-company.component.scss']
 })
+
+@Injectable()
 export class EmployerCompanyComponent implements OnInit {
 
   hasCompany: boolean = true;
@@ -17,6 +20,7 @@ export class EmployerCompanyComponent implements OnInit {
     description: "Opis kompanije",
     rating: 5
   }
+  isOwner: boolean = true;
 
   constructor() { }
 

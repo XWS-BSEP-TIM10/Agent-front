@@ -17,7 +17,7 @@ const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
                         { path: 'login', component: LoginComponent },
                         { path: 'registration', component: RegistrationComponent },
                         { path:'users/:id', component: UserPageComponent},
-                        { path: 'employer-company', component: EmployerCompanyComponent, children:
+                        { path: 'employer-company/:id', component: EmployerCompanyComponent, children:
                           [
                             { path: 'about-company',   component: AboutCompanyComponent, outlet:'company-details'},
                             { path: 'comments-company', component: CommentsCompanyComponent,  outlet: 'company-details'},

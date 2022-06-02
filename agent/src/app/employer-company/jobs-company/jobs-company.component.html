@@ -3,7 +3,7 @@
     integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
 
 <div class="container" *ngIf="!addingJob">
-    <button type="button" class="btn btn-primary" id="addJob" (click)="addJob()"><i class="fa fa-plus"
+    <button *ngIf="isOwner"  type="button" class="btn btn-primary" id="addJob" (click)="addJob()"><i class="fa fa-plus"
             aria-hidden="true" (click)="addJob()"></i></button>
 
     <div class="row">

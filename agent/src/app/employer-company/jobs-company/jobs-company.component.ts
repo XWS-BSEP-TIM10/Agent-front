@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EmployerCompanyComponent } from '../employer-company.component';
 
 @Component({
   selector: 'app-jobs-company',
@@ -10,6 +11,7 @@ export class JobsCompanyComponent implements OnInit {
 
   requirements:any = [];
   addingJob: boolean = false;
+  isOwner: boolean | undefined;
 
   jobOffers: any = [
     {
@@ -34,9 +36,10 @@ export class JobsCompanyComponent implements OnInit {
     dislinkt: new FormControl()
   })
 
-  constructor() { }
+  constructor(private employerCompanyComponent:EmployerCompanyComponent) { }
 
   ngOnInit(): void {
+    this.isOwner = this.employerCompanyComponent.isOwner;
   }
 
   addJob(){

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input, ViewChild  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EmployerCompanyComponent } from '../employer-company.component';
 
 @Component({
   selector: 'app-about-company',
@@ -9,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class AboutCompanyComponent implements OnInit {
 
   readOnlyForm: boolean = true;
+  isOwner: boolean | undefined;
 
   company: any = {
     name : 'Kina',
@@ -29,9 +31,10 @@ export class AboutCompanyComponent implements OnInit {
     description: new FormControl('', Validators.required)
   })
 
-  constructor() { }
+  constructor(private employerCompanyComponent:EmployerCompanyComponent) { }
 
   ngOnInit(): void {
+    this.isOwner = this.employerCompanyComponent.isOwner;
     this.companyProfile.get('name')?.setValue(this.company.name)
     this.companyProfile.get('address')?.setValue(this.company.address)
     this.companyProfile.get('email')?.setValue(this.company.email)

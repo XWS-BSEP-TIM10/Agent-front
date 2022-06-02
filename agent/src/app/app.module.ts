@@ -44,7 +44,7 @@ import { CompaniesComponent } from './companies/companies.component';
     HttpClientModule,
     NgbModule
   ],
-  providers: [],
+  providers: [EmployerCompanyComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

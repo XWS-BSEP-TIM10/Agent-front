@@ -23,6 +23,7 @@ import { Component, OnInit } from '@angular/core';
 export class CompaniesComponent implements OnInit {
 
   companies: any = [{
+    id : '1',
     name : 'Kina',
     address: "Bulevar oslobodjenja 10, Novi Sad",
     website: "like.com",
@@ -33,6 +34,7 @@ export class CompaniesComponent implements OnInit {
     rating: 5
   },
   {
+    id : '2',
     name : 'Kina',
     address: "Bulevar oslobodjenja 10, Novi Sad",
     website: "like.com",
@@ -43,6 +45,7 @@ export class CompaniesComponent implements OnInit {
     rating: 5
   },
   {
+    id : '3',
     name : 'Kina',
     address: "Bulevar oslobodjenja 10, Novi Sad",
     website: "like.com",
@@ -53,6 +56,7 @@ export class CompaniesComponent implements OnInit {
     rating: 5
   },
   {
+    id : '4',
     name : 'Katarina',
     address: "Bulevar oslobodjenja 10, Novi Sad",
     website: "like.com",
