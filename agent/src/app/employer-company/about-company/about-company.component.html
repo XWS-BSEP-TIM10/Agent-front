@@ -31,7 +31,7 @@
                     <input type="text" class="caption" formControlName="phoneNumber" [readonly]="readOnlyForm" >
                 </td>
             </tr>
-            <button type="button" class="btn btn-primary" id="editButton" (click)="enableEditing()" *ngIf="readOnlyForm && isOwner"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" style="background-color: #56baed;border-color: #56baed;" class="btn btn-primary" id="editButton" (click)="enableEditing()" *ngIf="readOnlyForm && isOwner"><i class="fa fa-pencil" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-success" id="saveButton" (click)="saveChanges()" *ngIf="!readOnlyForm">Save</button>
             <!--<div class="form-group">
                 <label class="col-md-3 control-label">Biography</label>

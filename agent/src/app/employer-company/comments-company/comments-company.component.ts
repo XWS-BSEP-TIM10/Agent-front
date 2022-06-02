@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmployerCompanyComponent } from '../employer-company.component';
 
 @Component({
   selector: 'app-comments-company',
@@ -10,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
       color: #b0c4de;
     }
     .filled {
-      color: #1e90ff;
+      color: #56baed;
     }
     .bad {
       color: #deb0b0;
@@ -23,6 +25,10 @@ import { Component, OnInit } from '@angular/core';
 export class CommentsCompanyComponent implements OnInit {
 
   rating = 0
+
+  addingComment : boolean = false;
+
+  isOwner: boolean | undefined;
 
  /* comment: any = {
     id : '1',
@@ -41,9 +47,26 @@ export class CommentsCompanyComponent implements OnInit {
     { id: 2, title: "Ram2", positive: "Dobre strane kompanije su, remote rad (bar trenutni), kompanija obezbedjuje svu opremu i vise nego sto je potrebno. Kompanija ima dobre klijente i intenzitet rada nije jak. Mislim da intenzitetet rada je i najveca prednost mada je i razumna jer endava nije tako jaka sa platama. Bezplatne beneficije, privatno zdravstveno, besplatan engleski i sve ono ostalo.  Takodje mislim da je kompanija idealna za pocetak karijere ili pocetak za radu u velikim timovima i velikom sistemu.", negative: "Negativno je to, sto se pominje povratak u kancelarije na hibridno radno vreme, takodje mozda malo manje plate od konkurenata, dosta sastanaka i birokratije (u smislu transparentnost mora biti velika zbog velicine timova).", position: "Software Developer", rating: 2, creationDate: '6.6.2012.'}
   ];
 
-  constructor() { }
+  addCommentForm = new FormGroup({
+    title: new FormControl('', Validators.required),
+    position: new FormControl('', Validators.required),
+    positive: new FormControl('', Validators.required),
+    negative: new FormControl('', Validators.required),
+    rating: new FormControl()
+  })
+
+  constructor(private employerCompanyComponent:EmployerCompanyComponent) { }
 
   ngOnInit(): void {
+    this.isOwner = this.employerCompanyComponent.isOwner;
+  }
+
+  addComment(){
+    this.addingComment = true;
+  }
+
+  exitAddComment(){
+    this.addingComment = false;
   }
 
 }

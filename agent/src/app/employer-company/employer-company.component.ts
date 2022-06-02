@@ -20,7 +20,7 @@ export class EmployerCompanyComponent implements OnInit {
     description: "Opis kompanije",
     rating: 5
   }
-  isOwner: boolean = false;
+  isOwner: boolean = true;
 
   constructor() { }
 

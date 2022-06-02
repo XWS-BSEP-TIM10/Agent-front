@@ -1,6 +1,5 @@
 <div *ngIf="!interviewDiv">  
-    <button *ngIf="!isOwner" type="button" class="btn btn-primary" id="addInterview" style="margin-left: 100em;" (click)="addInterview()"><i class="fa fa-plus"
-        aria-hidden="true" (click)="addInterview()"></i></button>
+    <button *ngIf="!isOwner" type="button" class="btn btn-primary" id="addInterview" style="margin-left: 100em;background-color: #56baed;border-color: #56baed;" (click)="addInterview()">Add interview</button>
     <div style="margin-left:27em;margin-bottom:3em;margin-top:3em">
         <h2>Broj utisaka: {{interviewComments.length}}</h2>
     </div>
