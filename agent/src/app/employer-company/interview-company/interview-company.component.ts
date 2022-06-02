@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployerCompanyComponent } from '../employer-company.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-interview-company',
@@ -8,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class InterviewCompanyComponent implements OnInit {
 
   rating = 0
-
+  isOwner: boolean | undefined;
+  interviewDiv: boolean = false;
   /* comment: any = {
      id : '1',
      title: "Bulevar oslobodjenja 10, Novi Sad",
@@ -26,9 +29,29 @@ export class InterviewCompanyComponent implements OnInit {
      { id: 2, title: "Ram2", hrInterview: "Veoma pozitivan i prijatan razgovor, opustena atmosfera, prijatni ljudi. Postavili mi konkretna pitanja, dali vremena da ispricam, videlo se da su pazljivo slusali i postavljali potpitanja da bi razumeli moj prethodni angazman i moje motive i karijerne ciljeve. Naravno, engleski jezik kao provera, sto se podrazumeva. ", techInterview: "Prosli smo kroz agendu koja mi je prethodno bila dostavljena da se pripremim. Nije bilo iznenadjenja, takodje dosta prijatan razgovor. Pitanja o prethodnom radnom iskustvu i konkretnim primerima, zatim teorija i ostalo je vremena za dodatna pitanja. Sve je bilo na mestu i bez stresa.", position: "Agile Delivery Manager", rating: 5, creationDate: '6.6.2012.'}
    ];
 
-  constructor() { }
+   addInterviewForm = new FormGroup({
+    position: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
+    hr: new FormControl('', Validators.required),
+    tech: new FormControl('', Validators.required)
+  })
+
+  constructor(private employerCompanyComponent:EmployerCompanyComponent) { }
 
   ngOnInit(): void {
+    this.isOwner = this.employerCompanyComponent.isOwner;
+  }
+
+  addInterview(){
+    this.interviewDiv = true;
+  }
+
+  exitInterviewDiv(){
+    this.interviewDiv = false;
+  }
+
+  addNewInterview(){
+    this.interviewDiv = false;
   }
 
 }

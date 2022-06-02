@@ -1,7 +1,11 @@
-<div style="margin-left:27em;margin-bottom:3em;margin-top:3em"><h2>Broj utisaka: {{interviewComments.length}}</h2>
-</div>
-<div *ngFor="let dataItem of interviewComments; let i = index" class="list-group">
-    <!--
+<div *ngIf="!interviewDiv">  
+    <button *ngIf="!isOwner" type="button" class="btn btn-primary" id="addInterview" style="margin-left: 100em;" (click)="addInterview()"><i class="fa fa-plus"
+        aria-hidden="true" (click)="addInterview()"></i></button>
+    <div style="margin-left:27em;margin-bottom:3em;margin-top:3em">
+        <h2>Broj utisaka: {{interviewComments.length}}</h2>
+    </div>
+    <div *ngFor="let dataItem of interviewComments; let i = index" class="list-group">
+        <!--
 <table style="width: 4%;margin-left:2em; float:left" border="1 px solid black">
     <tr style="border-bottom: 1px solid black;">
         <td><b>{{dataItem.rating | number : '.2-2'}}</b></td>
@@ -16,19 +20,38 @@
 </table>
 <div style="float:right">{{dataItem.position}}</div>
 -->
-<table style="width: 17%;margin-left:19.3em;zoom:1.4" >
-    <tr>
-<td>
-    {{dataItem.position}} <br>
-    <span style="zoom:0.7"><i>{{dataItem.creationDate}}</i></span>
-</td>
-</tr>
-</table>
-<div style="border: 1px solid black;width: 60%;margin-left:27em; margin-top:1em;padding-top:0.2em;padding-bottom:2.2em;padding-left:2em;padding-right: 2em; background-color: rgb(246,246,246); margin-bottom: 4em;">
-    <h2>HR intervju</h2>
-    {{dataItem.hrInterview}}
-    <br><br>
-    <h2>Tehnički intervju</h2>
-    {{dataItem.techInterview}}
+        <table style="width: 17%;margin-left:19.3em;zoom:1.4">
+            <tr>
+                <td>
+                    {{dataItem.position}} <br>
+                    <span style="zoom:0.7"><i>{{dataItem.creationDate}}</i></span>
+                </td>
+            </tr>
+        </table>
+        <div
+            style="border: 1px solid black;width: 60%;margin-left:27em; margin-top:1em;padding-top:0.2em;padding-bottom:2.2em;padding-left:2em;padding-right: 2em; background-color: rgb(246,246,246); margin-bottom: 4em;">
+            <h2>HR intervju</h2>
+            {{dataItem.hrInterview}}
+            <br><br>
+            <h2>Tehnički intervju</h2>
+            {{dataItem.techInterview}}
+        </div>
+    </div>
 </div>
-</div> 
+<div *ngIf="interviewDiv">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <i class="fa fa-close" aria-hidden="true" (click)="exitInterviewDiv()"
+                style="position: relative; left: 14em; bottom: 3em;"></i>
+            <form [formGroup]="addInterviewForm">
+                <input type="text" class="fadeIn second" placeholder="Title" formControlName="title">
+                <input type="text" class="fadeIn second" placeholder="Position" formControlName="position">
+                <textarea class="form-control" id="hr" formControlName="hr" placeholder="HR interview"
+                rows="6"></textarea>
+                <textarea class="form-control" id="tech" formControlName="tech" placeholder="Tech interview"
+                rows="6"></textarea>
+                <input type="submit" class="fadeIn fourth" value="Add interview" (click)="addNewInterview()" />
+            </form>
+        </div>
+    </div>
+</div>
