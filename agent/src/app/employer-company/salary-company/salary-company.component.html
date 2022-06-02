@@ -1,19 +1,37 @@
-<table class="table">
-    <tr class="tableHeadRow">
-        <th class="headers">Position</th>
-        <th class="headers">Salary (average)</th>
-        <th class="minHeader">Min</th>
-        <th class="maxHeader">Max</th>
-        <th></th>
-    </tr>
+<div *ngIf="!salaryDiv">
+    <button *ngIf="!isOwner" type="button" class="btn btn-primary" id="addSalary" style="margin-left: 110em;" (click)="addSalary()"><i class="fa fa-plus"
+            aria-hidden="true" (click)="addSalary()"></i></button>
+    <table class="tableSalary">
+        <tr class="tableHeadRow">
+            <th class="headers">Position</th>
+            <th class="headers">Salary (average)</th>
+            <th class="minHeader">Min</th>
+            <th class="maxHeader">Max</th>
+            <th></th>
+        </tr>
 
-    <tr class="tableRow" *ngFor="let position of salaries">
+        <tr class="tableRow" *ngFor="let position of salaries">
 
-        <td class="content">{{position.position}}</td>
-        <td class="contentAverage">{{position.value}} EUR</td>
-        <td class="content">{{position.lowest}} EUR</td>
-        <td class="content">{{position.highest}} EUR</td>
-        <td class="content-users">({{position.users}})</td>
-    </tr>
+            <td class="content">{{position.position}}</td>
+            <td class="contentAverage">{{position.value}} EUR</td>
+            <td class="content">{{position.lowest}} EUR</td>
+            <td class="content">{{position.highest}} EUR</td>
+            <td class="content-users">({{position.users}})</td>
+        </tr>
 
-</table>
+    </table>
+</div>
+
+<div *ngIf="salaryDiv">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <i class="fa fa-close" aria-hidden="true" (click)="exitSalaryDiv()"
+                style="position: relative; left: 14em; bottom: 3em;"></i>
+            <form [formGroup]="addSalaryForm">
+                <input type="text" class="fadeIn second" placeholder="Position" formControlName="position">
+                <input type="number" class="fadeIn second" placeholder="Value (EUR)" formControlName="value">
+                <input type="submit" class="fadeIn fourth" value="Add salary" (click)="addNewSalary()" />
+            </form>
+        </div>
+    </div>
+</div>
