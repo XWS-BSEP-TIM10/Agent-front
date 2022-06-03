@@ -35,7 +35,7 @@ export class CommentsCompanyComponent implements OnInit {
   isOwner: boolean | undefined;
 
   companyId: any;
-
+  isSubmitted = false;
  /* comment: any = {
     id : '1',
     title: "Bulevar oslobodjenja 10, Novi Sad",
@@ -60,6 +60,8 @@ export class CommentsCompanyComponent implements OnInit {
 
   constructor(private employerCompanyComponent:EmployerCompanyComponent, private storageService:StorageService, private route: ActivatedRoute, private commentService:CommentService) { }
 
+  get f() { return this.addCommentForm.controls; }
+
   ngOnInit(): void {
     this.isOwner = this.employerCompanyComponent.ownCurrentCompany;
     this.companyId = decodeURI(this.route.snapshot.paramMap.get('id') || window.location.pathname.split("/")[2])
@@ -77,6 +79,10 @@ export class CommentsCompanyComponent implements OnInit {
   }
 
   addNewComment() : void{
+    this.isSubmitted = true;
+    if (this.addCommentForm.invalid) {
+      return
+    }
 
     let newCommentDTO: NewCommentDTO = {
       title: this.addCommentForm.get('title')?.value,
@@ -90,7 +96,6 @@ export class CommentsCompanyComponent implements OnInit {
 
 
     this.commentService.addComment(newCommentDTO).subscribe((response) => {
-        alert("You've successfully left a comment.")
         this.commentService.getComments(this.companyId).subscribe((data: any) => {
           this.comments = data;
           this.addingComment = false;
@@ -99,6 +104,9 @@ export class CommentsCompanyComponent implements OnInit {
       )
   }
 
-}
+  isValid(value: any): boolean {
+    return (value.invalid && value.touched) || (value.dirty && value.invalid) ||
+      (value.untouched && this.isSubmitted);
+  }
 
-type Review = Array<{ id: number; title: string; positive: string; negative: string; position: string; rating: number; creationDate: String }>;
+}

@@ -5,7 +5,7 @@
 <div class="container" *ngIf="!addingJob">
     <button *ngIf="isOwner"  type="button" class="btn btn-primary" id="addJob" (click)="addJob()" style="background-color: #56baed;border-color: #56baed;">Add job</button>
 
-    <div class="row">
+    <div *ngIf="jobOffers.length!=0" class="row">
         <div class="col-lg-10 mx-auto">
             <div class="career-search mb-60">
 
@@ -43,6 +43,9 @@
 
         </div>
     </div>
+    <div *ngIf="jobOffers.length==0">
+        <h1 style="margin-left: 6em; margin-top: 2em">There are no job offers for this company</h1>
+    </div>
 
 </div>
 
@@ -53,8 +56,23 @@
                 style="position: relative; left: 14em; bottom: 3em;"></i>
             <form [formGroup]="addJobForm">
                 <input type="text" class="fadeIn second" placeholder="Title" formControlName="title">
+                <div *ngIf="isValid(f.title)" class="alert alert-danger">
+                    <div *ngIf="f.title.hasError('required')">
+                        Title is required.
+                    </div>
+                </div>
                 <input type="text" class="fadeIn second" placeholder="Position" formControlName="position">
+                <div *ngIf="isValid(f.position)" class="alert alert-danger">
+                    <div *ngIf="f.position.hasError('required')">
+                        Position is required.
+                    </div>
+                </div>
                 <input type="text" class="fadeIn second" placeholder="Description" formControlName="description">
+                <div *ngIf="isValid(f.description)" class="alert alert-danger">
+                    <div *ngIf="f.description.hasError('required')">
+                        Description is required.
+                    </div>
+                </div>
                 <input type="text" class="fadeIn second" placeholder="Requirement" formControlName="requirement"
                     style="width: 75%">
                 <button type="button" class="btn btn-primary" id="addRequirement" (click)="addRequirement()"><i
@@ -73,7 +91,7 @@
                     </tr>
                 </table>
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" style="margin-left: 30%; margin-right: -25%; padding: 2.3%; margin-top: 2%;">
+                    <input formControlName="dislinkt" type="checkbox" class="form-check-input" id="exampleCheck1" style="margin-left: 30%; margin-right: -25%; padding: 2.3%; margin-top: 2%;">
                     <label class="form-check-label" for="exampleCheck1" style="margin-top: 2%">Share on dislinkt</label>
                 </div>
                 <input type="submit" class="fadeIn fourth" value="Add job" (click)="addNewJob()" />

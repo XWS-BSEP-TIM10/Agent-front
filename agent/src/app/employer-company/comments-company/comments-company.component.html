@@ -58,12 +58,32 @@
                 style="position: relative; left: 14em; bottom: 3em;"></i>
             <form [formGroup]="addCommentForm">
                 <input type="text" class="fadeIn second" placeholder="Title" formControlName="title">
+                <div *ngIf="isValid(f.title)" class="alert alert-danger">
+                    <div *ngIf="f.title.hasError('required')">
+                        Title is required.
+                    </div>
+                </div>
                 <input type="text" class="fadeIn second" placeholder="Position" formControlName="position">
+                <div *ngIf="isValid(f.position)" class="alert alert-danger">
+                    <div *ngIf="f.position.hasError('required')">
+                        Position is required.
+                    </div>
+                </div>
                 <div class="mb-3">
                     <textarea placeholder="Positive" class="form-control" id="exampleFormControlTextarea1" formControlName="positive" rows="3"></textarea>
+                    <div *ngIf="isValid(f.positive)" class="alert alert-danger">
+                        <div *ngIf="f.positive.hasError('required')">
+                            Positive is required.
+                        </div>
+                    </div>
                   </div>
                   <div style="margin-top:-1em" class="mb-3">
                     <textarea placeholder="Negative" class="form-control" id="exampleFormControlTextarea1" formControlName="negative" rows="3"></textarea>
+                    <div *ngIf="isValid(f.negative)" class="alert alert-danger">
+                        <div *ngIf="f.negative.hasError('required')">
+                            Negative is required.
+                        </div>
+                    </div>
                   </div>
                   <div style="zoom:1.5">
                       Rate:
