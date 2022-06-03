@@ -1,6 +1,7 @@
 import { config } from "src/shared"
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RegisterCompanyDTO } from "../dto/RegisterCompanyDTO";
 
 @Injectable({
     providedIn: 'root'
@@ -8,7 +9,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CompanyService {
 
     private unactiveCompaniesUrl = "/companies?activated=false"
-    private activateCompanyUrl = "/companies/"
+    private CompanyUrl = "/companies/"
+    private activeCompaniesUrl = "/companies?activated=true"
+
 
     constructor(private http: HttpClient) { }
 
@@ -17,7 +20,15 @@ export class CompanyService {
     }
 
     activateCompany(companyId: string){
-        return this.http.put(`${config.baseUrl}${this.activateCompanyUrl}${companyId}/activate`, {})
+        return this.http.put(`${config.baseUrl}${this.CompanyUrl}${companyId}/activate`, {})
+    }
+
+    getActivatedCompanies(){
+        return this.http.get(`${config.baseUrl}${this.activeCompaniesUrl}`)
+    }
+
+    addCompany(registrationDTO:RegisterCompanyDTO){
+    return this.http.post(`${config.baseUrl}${this.CompanyUrl}`, registrationDTO)
     }
 
 }

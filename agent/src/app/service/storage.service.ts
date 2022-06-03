@@ -15,6 +15,17 @@ export class StorageService {
     sessionStorage.setItem("refreshToken", refreshToken);
   }
 
+  getCompanyIdFromToken(): string {
+    const jwtToken = window.sessionStorage.getItem('jwt')
+    if (jwtToken) {
+      const tokenSplit = jwtToken.split('.')
+      const decoded = decodeURIComponent(escape(window.atob(tokenSplit[1])))
+      const obj = JSON.parse(decoded)
+      return obj.companyId
+    }
+    return ""
+  }
+
   getRoleFromToken(): string {
     const jwtToken = window.sessionStorage.getItem('jwt')
     if (jwtToken) {

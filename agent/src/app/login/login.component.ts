@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/companies')
           break
         case 'ROLE_COMPANY_OWNER':
-          this.router.navigateByUrl('/employer-company/1')
+          this.router.navigateByUrl('/employer-company/'+this.storageService.getCompanyIdFromToken())
           break;
         case 'ROLE_ADMIN':
           this.router.navigateByUrl('/registration-requests')

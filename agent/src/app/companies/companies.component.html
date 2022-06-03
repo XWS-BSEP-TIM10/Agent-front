@@ -29,7 +29,7 @@
                         <span class="descriptionSpan">{{company.description}}</span><br>
                         <br>
                     </p>
-                    <button type="button" class="btn btn-primary" routerLink="/employer-company/{{company.id}}">Details</button>
+                    <button *ngIf="isLoggedIn()" type="button" class="btn btn-primary" routerLink="/employer-company/{{company.id}}">Details</button>
                 </div>
             </div>
         </td>

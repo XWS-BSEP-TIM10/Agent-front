@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyService } from '../service/company.service';
+import { StorageService } from '../service/storage.service';
 
 @Component({
   selector: 'app-companies',
@@ -22,54 +24,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompaniesComponent implements OnInit {
 
-  companies: any = [{
-    id : '1',
-    name : 'Kina',
-    address: "Bulevar oslobodjenja 10, Novi Sad",
-    website: "like.com",
-    phoneNumber: "032/12332-123",
-    email: "kljals@gmail.com",
-    description: "Endava je tehnološka kompanija, sa preko 20 godina iskustva u radu sa nekim od vodećih svetskih kompanija u oblasti finansija,... kompanije",
-    emailUser: "user@gmail.com",
-    rating: 5
-  },
-  {
-    id : '2',
-    name : 'Kina',
-    address: "Bulevar oslobodjenja 10, Novi Sad",
-    website: "like.com",
-    phoneNumber: "032/12332-123",
-    email: "kljals@gmail.com",
-    description: "Opis Endava je tehnološka kompanija, sa preko 20 godina iskustva u radu sa nekim od vodećih svetskih kompanija u oblasti finansija,...",
-    emailUser: "user@gmail.com",
-    rating: 5
-  },
-  {
-    id : '3',
-    name : 'Kina',
-    address: "Bulevar oslobodjenja 10, Novi Sad",
-    website: "like.com",
-    phoneNumber: "032/12332-123",
-    email: "kljals@gmail.com",
-    description: "Opis Endava je tehnološka kompanija, sa preko 20 godina iskustva u radu sa nekim od vodećih svetskih kompanija u oblasti finansija,...",
-    emailUser: "user@gmail.com",
-    rating: 5
-  },
-  {
-    id : '4',
-    name : 'Katarina',
-    address: "Bulevar oslobodjenja 10, Novi Sad",
-    website: "like.com",
-    phoneNumber: "032/12332-123",
-    email: "kljals@gmail.com",
-    description: "Opis Endava je tehnološka kompanija, sa preko 20 godina iskustva u radu sa nekim od vodećih svetskih kompanija u oblasti finansija,...",
-    emailUser: "user@gmail.com",
-    rating: 3
-  }]
+  companies: any = []
 
-  constructor() { }
+  constructor(private storageService: StorageService, private companyService:CompanyService) { }
 
   ngOnInit(): void {
+    this.loadCompanies();
+  }
+
+  loadCompanies(){
+    this.companyService.getActivatedCompanies().subscribe((data: any) => {
+      this.companies = data;
+    })
+  }
+
+  isLoggedIn() {
+    return this.storageService.getRoleFromToken() !== ""
   }
 
 }

@@ -10,7 +10,7 @@ import { StorageService } from '../service/storage.service';
 export class NavbarComponent implements OnInit {
 
 
-  companyId: number = -1
+  companyId: string = '-1'
   constructor(private router: Router, private storageService: StorageService) { }
 
   login(){
@@ -41,8 +41,8 @@ export class NavbarComponent implements OnInit {
   }*/
 
   ngOnInit(): void {
-    //if(this.storageService.getRoleFromToken() !== "ROLE_COMPANY_OWNER")
-    //  this.companyId = -1
+      //console.log(this.storageService.getCompanyIdFromToken())
+      //this.companyId = this.storageService.getCompanyIdFromToken()
   }
 
   isAdmin(){
@@ -56,6 +56,11 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.storageService.clearToken()
     this.router.navigate([''])
+  }
+
+  changeRoute(){
+    let compId: any = '/employer-company/'+this.storageService.getCompanyIdFromToken()
+    this.router.navigate([compId]);
   }
 
 }
