@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-registration-requests',
@@ -7,28 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationRequestsComponent implements OnInit {
 
-  companies: any = [{
-    name : 'Kina',
-    address: "Bulevar oslobodjenja 10, Novi Sad",
-    website: "like.com",
-    phoneNumber: "032/12332-123",
-    email: "kljals@gmail.com",
-    description: "Opis kompanije",
-    emailUser: "user@gmail.com"
-  },
-  {
-    name : 'Kina',
-    address: "Bulevar oslobodjenja 10, Novi Sad",
-    website: "like.com",
-    phoneNumber: "032/12332-123",
-    email: "kljals@gmail.com",
-    description: "Opis kompanije",
-    emailUser: "user@gmail.com"
-  }]
+  companies: any = []
 
-  constructor() { }
+  constructor(private companyService: CompanyService) { }
 
   ngOnInit(): void {
+    this.loadCompanies()
+  }
+
+  loadCompanies(){
+    this.companyService.getUnactivatedCompanies().subscribe((data: any) => {
+      this.companies = data;
+    })
+  }
+
+  activateCompany(companyId: string) {
+    this.companyService.activateCompany(companyId).subscribe((data: any) => {
+      this.loadCompanies()
+    }, (err: Error) => {
+      alert('An error occured... Please try again!')
+    })
   }
 
 }

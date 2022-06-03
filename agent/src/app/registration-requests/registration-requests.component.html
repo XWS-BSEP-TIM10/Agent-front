@@ -22,7 +22,8 @@
                                 <td style="zoom:1.5"><b>{{comp.name}}</b></td>
                                 
                                 
-                                <td>{{comp.emailUser}} <i class="fa fa-user" aria-hidden="true"></i></td>
+                                <!--<td>{{comp.emailUser}} <i class="fa fa-user" aria-hidden="true"></i></td>-->
+                                <td></td>
                                 <td rowspan="3">
                                  <div class="mb-3" style="margin-top:1em">
                                      <label for="exampleFormControlTextarea1" class="form-label">Description: </label>
@@ -43,7 +44,7 @@
                              <td></td>
                              <td></td>
                              <td>
-                                <span style="float:right"><button style="margin-right:2em" type="button" class="btn btn-success">Approve</button><button type="button" class="btn btn-danger">Reject</button></span>
+                                <span style="float:right"><button style="margin-right:2em" type="button" class="btn btn-success" (click)="activateCompany(comp.id)">Approve</button><button type="button" class="btn btn-danger">Reject</button></span>
                             </td>
                          </tr>
                         </table>
