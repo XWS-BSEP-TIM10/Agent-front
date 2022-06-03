@@ -58,7 +58,7 @@ export class CommentsCompanyComponent implements OnInit {
   constructor(private employerCompanyComponent:EmployerCompanyComponent) { }
 
   ngOnInit(): void {
-    this.isOwner = this.employerCompanyComponent.isOwner;
+    this.isOwner = this.employerCompanyComponent.ownCurrentCompany;
   }
 
   addComment(){

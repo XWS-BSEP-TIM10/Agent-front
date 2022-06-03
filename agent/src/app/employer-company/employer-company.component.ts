@@ -25,29 +25,21 @@ export class EmployerCompanyComponent implements OnInit {
     description: new FormControl('', [Validators.required]),
   })
 
-  company: any = {
-    name : 'Kina',
-    address: "Bulevar oslobodjenja 10, Novi Sad",
-    website: "like.com",
-    phoneNumber: "032/12332-123",
-    email: "kljals@gmail.com",
-    description: "Opis kompanije",
-    rating: 5
-  }
+  company: any = {}
   isOwner: boolean = false;
   isSubmitted = false;
   isApproved : boolean = true;
+  ownCurrentCompany: boolean = false;
 
   constructor(private storageService: StorageService, private route: ActivatedRoute, private companyService: CompanyService) { }
 
   ngOnInit(): void {
-    //if(this.storageService.getRoleFromToken() === 'ROLE_COMPANY_OWNER') this.isOwner =true
     let id = decodeURI(this.route.snapshot.paramMap.get('id') || "")
-    if(id == '-1') this.isOwner= false
-    else {this.isOwner= true
-        if(this.storageService.getRoleFromToken() === 'ROLE_USER') this.isApproved = false
-        else this.isApproved = true
-    }
+    this.checkIfUserIsOwner(id)
+    this.checkIfCompanyIsApproved(id)
+    this.companyService.getCompanyById(id).subscribe((data: any) => {
+      this.company = data;
+    })
   }
 
   addCompany() : void{
@@ -74,6 +66,25 @@ export class EmployerCompanyComponent implements OnInit {
   isValid(value: any): boolean {
     return (value.invalid && value.touched) || (value.dirty && value.invalid) ||
       (value.untouched && this.isSubmitted);
+  }
+
+  checkIfUserIsOwner(id: string) :void{
+    if(id == '-1') this.isOwner= false
+    else {
+        if(id === this.storageService.getCompanyIdFromToken()){
+          this.ownCurrentCompany = true;
+        }else{
+          this.ownCurrentCompany = false;
+        }
+        this.isOwner = true;
+    }
+  }
+
+  checkIfCompanyIsApproved(id: string){
+    if(this.storageService.getCompanyIdFromToken() !== "-1"){
+      if(this.storageService.getRoleFromToken() === 'ROLE_USER') this.isApproved = false
+      else this.isApproved = true
+    }
   }
 
 }

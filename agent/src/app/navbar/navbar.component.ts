@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../service/storage.service';
+import { EmployerCompanyComponent } from '../employer-company/employer-company.component';
 
 @Component({
   selector: 'app-navbar',
@@ -11,41 +12,24 @@ export class NavbarComponent implements OnInit {
 
 
   companyId: string = '-1'
-  constructor(private router: Router, private storageService: StorageService) { }
+  constructor(private router: Router, private storageService: StorageService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
-  login(){
+  login() {
     this.router.navigate(['login']);
   }
 
-  registration(){
+  registration() {
     this.router.navigate(['registration']);
   }
 
-  /*logout() {
-    this.storageService.clearToken()
-    this.router.navigate([''])
-  }
-
-  getRole() {
-    return this.storageService.getRoleFromToken()
-  }
-
-  isLoggedIn() {
-    return this.storageService.getRoleFromToken() !== ""
-  }
-
-
-  goToUsersPage() {
-    let userId = this.storageService.getIdFromToken()
-    this.router.navigate([`users/${userId}`])
-  }*/
-
   ngOnInit(): void {
-      //console.log(this.storageService.getCompanyIdFromToken())
-      //this.companyId = this.storageService.getCompanyIdFromToken()
+    //console.log(this.storageService.getCompanyIdFromToken())
+    //this.companyId = this.storageService.getCompanyIdFromToken()
   }
 
-  isAdmin(){
+  isAdmin() {
     return this.storageService.getRoleFromToken() === "ROLE_ADMIN"
   }
 
@@ -58,8 +42,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([''])
   }
 
-  changeRoute(){
-    let compId: any = '/employer-company/'+this.storageService.getCompanyIdFromToken()
+  changeRoute() {
+    let compId: any = '/employer-company/' + this.storageService.getCompanyIdFromToken()
     this.router.navigate([compId]);
   }
 

@@ -12,15 +12,7 @@ export class AboutCompanyComponent implements OnInit {
   readOnlyForm: boolean = true;
   isOwner: boolean | undefined;
 
-  company: any = {
-    name : 'Kina',
-    address: "Bulevar oslobodjenja 10, Novi Sad",
-    website: "like.com",
-    phoneNumber: "032/12332-123",
-    email: "kljals@gmail.com",
-    description: "Opis kompanije",
-    rating: 5
-  }
+  company: any = {}
 
   companyProfile = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -34,7 +26,8 @@ export class AboutCompanyComponent implements OnInit {
   constructor(private employerCompanyComponent:EmployerCompanyComponent) { }
 
   ngOnInit(): void {
-    this.isOwner = this.employerCompanyComponent.isOwner;
+    this.company = this.employerCompanyComponent.company;
+    this.isOwner = this.employerCompanyComponent.ownCurrentCompany;
     this.companyProfile.get('name')?.setValue(this.company.name)
     this.companyProfile.get('address')?.setValue(this.company.address)
     this.companyProfile.get('email')?.setValue(this.company.email)

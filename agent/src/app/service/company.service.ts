@@ -9,26 +9,30 @@ import { RegisterCompanyDTO } from "../dto/RegisterCompanyDTO";
 export class CompanyService {
 
     private unactiveCompaniesUrl = "/companies?activated=false"
-    private CompanyUrl = "/companies/"
+    private companyUrl = "/companies/"
     private activeCompaniesUrl = "/companies?activated=true"
 
 
     constructor(private http: HttpClient) { }
 
-    getUnactivatedCompanies(){
+    getUnactivatedCompanies() {
         return this.http.get(`${config.baseUrl}${this.unactiveCompaniesUrl}`)
     }
 
-    activateCompany(companyId: string){
-        return this.http.put(`${config.baseUrl}${this.CompanyUrl}${companyId}/activate`, {})
+    activateCompany(companyId: string) {
+        return this.http.put(`${config.baseUrl}${this.companyUrl}${companyId}/activate`, {})
     }
 
-    getActivatedCompanies(){
+    getActivatedCompanies() {
         return this.http.get(`${config.baseUrl}${this.activeCompaniesUrl}`)
     }
 
-    addCompany(registrationDTO:RegisterCompanyDTO){
-    return this.http.post(`${config.baseUrl}${this.CompanyUrl}`, registrationDTO)
+    getCompanyById(id: string) {
+        return this.http.get(`${config.baseUrl}${this.companyUrl}${id}`)
+    }
+
+    addCompany(registrationDTO: RegisterCompanyDTO) {
+        return this.http.post(`${config.baseUrl}${this.companyUrl}`, registrationDTO)
     }
 
 }

@@ -56,19 +56,19 @@
     <nav id="navbar" class="navbar" style="margin-left: -60em; margin-top:-7em">
         <ul>
             <li class="listItem"><a class="nav-link scrollto"
-                    [routerLink]="['/employer-company/{{company.id}}', { outlets: { 'company-details': ['about-company'] } }]"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['about-company'] } }]"
                     style="cursor: pointer;">About</a></li>
             <li class="listItem"><a class="nav-link scrollto"
-                    [routerLink]="['/employer-company/{{company.id}}', { outlets: { 'company-details': ['comments-company'] } }]"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['comments-company'] } }]"
                     style="cursor: pointer;">Comments</a></li>
             <li class="listItem"><a class="nav-link scrollto"
-                    [routerLink]="['/employer-company/{{company.id}}', { outlets: { 'company-details': ['salary-company'] } }]"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['salary-company'] } }]"
                     style="cursor: pointer;">Salary</a></li>
             <li class="listItem"><a class="nav-link scrollto"
-                    [routerLink]="['/employer-company/{{company.id}}', { outlets: { 'company-details': ['jobs-company'] } }]"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['jobs-company'] } }]"
                     style="cursor: pointer;">Job offers</a></li>
             <li class="listItem"><a class="nav-link scrollto"
-                    [routerLink]="['/employer-company/{{company.id}}', { outlets: { 'company-details': ['interview-company'] } }]"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['interview-company'] } }]"
                     style="cursor: pointer;">Interview</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
