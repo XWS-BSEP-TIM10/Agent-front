@@ -55,6 +55,10 @@ export class AboutCompanyComponent implements OnInit {
   }
 
   saveChanges() {
+    this.isSubmitted = true;
+    if (this.companyProfile.invalid) {
+      return
+    }
     this.readOnlyForm = true;
     let updateDTO: UpdateCompanyDTO = {
       ownerId: this.storageService.getIdFromToken(),
