@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployerCompanyComponent } from '../employer-company.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { InterviewService } from './../../service/interview.service'
+import { ActivatedRoute } from '@angular/router';
+import { AddInterviewDTO } from '../../dto/AddInterviewDTO';
+import { StorageService } from '../../service/storage.service';
 
 @Component({
   selector: 'app-interview-company',
@@ -23,35 +27,69 @@ export class InterviewCompanyComponent implements OnInit {
    }
  
     comments: Array<Comment>*/
- 
-    interviewComments: InterviewReview = [
-     { id: 1, title: "Ram", hrInterview: "HR intervju je trajao sat vremena, sa dvoje ljudi iz HR-a. Razgovor je bio veoma prijatan i opušten, ragovarali smo o raznim temema, a naravno najviše o mom prethodnom iskustvu. Intervju je bio na srpskom, ali smo par minuta pričali na engleskom. Intervju je bio online i sa upaljenim kamerama.", techInterview: "Tehnički intervju je trajao sat vremena. Intervju su vodila dvojica inženjera. Pitali su me neke stvari o mom prethodnom iskustvu, ali samo ukratko. Onda je nastupilo ispitivanje. Dosta toga smo prošli što se tiče C++a, od osnovnih stvari do naprednijih stvari. Radili smo preko neke online platforme za interaktivno editovanje koda. Nisam radio nikakav konkretan zadatak, nego samo sam davao neke kratke primjere za to što pričam. Ispitivali su me i o strukturama podataka i design patternima. Bili su veoma korektni i prijatni, čak su mi se i izvinjavali što će me pitati osnovne stvari.", position: "Software Developer", rating: 5, creationDate: '6.6.2010.' },
-     { id: 2, title: "Ram2", hrInterview: "Veoma pozitivan i prijatan razgovor, opustena atmosfera, prijatni ljudi. Postavili mi konkretna pitanja, dali vremena da ispricam, videlo se da su pazljivo slusali i postavljali potpitanja da bi razumeli moj prethodni angazman i moje motive i karijerne ciljeve. Naravno, engleski jezik kao provera, sto se podrazumeva. ", techInterview: "Prosli smo kroz agendu koja mi je prethodno bila dostavljena da se pripremim. Nije bilo iznenadjenja, takodje dosta prijatan razgovor. Pitanja o prethodnom radnom iskustvu i konkretnim primerima, zatim teorija i ostalo je vremena za dodatna pitanja. Sve je bilo na mestu i bez stresa.", position: "Agile Delivery Manager", rating: 5, creationDate: '6.6.2012.'}
-   ];
 
-   addInterviewForm = new FormGroup({
+  isSubmitted: boolean = false;
+  interviewComments: InterviewReview = [];
+
+  get f() { return this.addInterviewForm.controls; }
+
+  addInterviewForm = new FormGroup({
     position: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
     hr: new FormControl('', Validators.required),
     tech: new FormControl('', Validators.required)
   })
 
-  constructor(private employerCompanyComponent:EmployerCompanyComponent) { }
+  constructor(private storageService: StorageService, private employerCompanyComponent: EmployerCompanyComponent, private interviewService: InterviewService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.isOwner = this.employerCompanyComponent.ownCurrentCompany;
+    let id = decodeURI(this.route.snapshot.paramMap.get('id') || window.location.pathname.split("/")[2])
+
+    this.interviewService.getInterviews(id).subscribe((data: any) => {
+      this.interviewComments = data;
+    })
   }
 
-  addInterview(){
+  addInterview() {
     this.interviewDiv = true;
   }
 
-  exitInterviewDiv(){
+  exitInterviewDiv() {
     this.interviewDiv = false;
   }
 
-  addNewInterview(){
+  addNewInterview() {
+    this.isSubmitted = true;
+    if (this.addInterviewForm.invalid) {
+      return
+    }
+    let addInterviewDTO: AddInterviewDTO = {
+      candidateId: this.storageService.getIdFromToken(),
+      companyId: decodeURI(this.route.snapshot.paramMap.get('id') || window.location.pathname.split("/")[2]),
+      title: this.addInterviewForm.get('title')?.value,
+      hrInterview: this.addInterviewForm.get('hr')?.value,
+      techInterview: this.addInterviewForm.get('tech')?.value,
+      position: this.addInterviewForm.get('position')?.value
+    }
+
+    console.log(addInterviewDTO)
+    this.interviewService.addInterview(addInterviewDTO).subscribe((response) => {
+      this.ngOnInit();
+    },
+      (error) => {
+        alert("An error occurred... Please try again!")
+      })
+    this.addInterviewForm.get('title')?.setValue("")
+    this.addInterviewForm.get('hr')?.setValue("")
+    this.addInterviewForm.get('tech')?.setValue("")
+    this.addInterviewForm.get('position')?.setValue("")
     this.interviewDiv = false;
+  }
+
+  isValid(value: any): boolean {
+    return (value.invalid && value.touched) || (value.dirty && value.invalid) ||
+      (value.untouched && this.isSubmitted);
   }
 
 }
