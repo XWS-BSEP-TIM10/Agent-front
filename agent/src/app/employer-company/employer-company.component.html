@@ -1,4 +1,4 @@
-<div class="wrapper fadeInDown" *ngIf="!hasCompany">
+<div class="wrapper fadeInDown" *ngIf="!isOwner">
     <!--ako nema kompaniju ova forma-->
     <div id="formContent">
         <h1 class="heading">Registration</h1>
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div class="company" *ngIf="hasCompany">
+<div class="company" *ngIf="isOwner">
     <img class="captionImage" src="../../assets/img/caption.jpg" />
     <div class="descriptionDiv">
         <h1>{{company.name}}

@@ -9,19 +9,19 @@ import { RegistrationDTO } from "../dto/RegistrationDTO";
 })
 export class AuthenticationService {
 
-  private loginUrl = "/auth/login"
-  private signupUrl = "/auth/signup"
+  private loginUrl = "/users/login"
+  private signupUrl = "/users/signup"
   private checkTokenUrl = "/auth/checkToken"
   private refreshTokenUrl = "/auth/refreshToken"
 
   constructor(private http: HttpClient) { }
 
   login(loginDTO: LoginDTO) {
-    
+    return this.http.post(`${config.baseUrl}${this.loginUrl}`, loginDTO)
   }
 
   signup(registrationDTO: RegistrationDTO) {
-    
+    return this.http.post(`${config.baseUrl}${this.signupUrl}`, registrationDTO)
   }
 
   checkToken(token: String){

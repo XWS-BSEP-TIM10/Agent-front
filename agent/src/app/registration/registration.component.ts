@@ -28,11 +28,7 @@ export class RegistrationComponent implements OnInit {
   gender = "";
 
   registerForm = new FormGroup({
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phoneNumber: new FormControl('', [Validators.required, phoneNumberValidator]),
-    username: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, isContainsLowercase,
       isContainsNumber, isContainsSymbol, isContainsUppercase,
       isValidLengthPassword, isWhitespace]),
@@ -55,7 +51,27 @@ export class RegistrationComponent implements OnInit {
 
 
   registerUser() {
+    if(this.registerForm.get('password')?.value !== this.registerForm.get('confirmPassword')?.value){
+      this.confirmPasswordError = "The password conformation does not match";
+      return
+    }
 
+    let registrationDTO: RegistrationDTO = {
+      email: this.registerForm.get('email')?.value,
+      password: this.registerForm.get('password')?.value,
+    }
+
+    this.authService.signup(registrationDTO).subscribe((response) => {
+      this.router.navigateByUrl('/')
+    },
+      (error) => {
+        this.sendRequest = false;
+        if (error.status == 400) {
+            this.responseError = 'Username already exists.'
+        } else if (error.status == 500) {
+          this.responseError = 'An error occurred, please try again.'
+        }
+      })
   }
 
   togglePass(id: string, toggleId: string) {
