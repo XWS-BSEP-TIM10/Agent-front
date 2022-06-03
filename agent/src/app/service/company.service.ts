@@ -2,6 +2,7 @@ import { config } from "src/shared"
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RegisterCompanyDTO } from "../dto/RegisterCompanyDTO";
+import { UpdateCompanyDTO } from "../dto/UpdateCompanyDTO";
 
 @Injectable({
     providedIn: 'root'
@@ -35,4 +36,7 @@ export class CompanyService {
         return this.http.post(`${config.baseUrl}${this.companyUrl}`, registrationDTO)
     }
 
+    updateCompany(updateDTO: UpdateCompanyDTO, id: string){
+        return this.http.put(`${config.baseUrl}${this.companyUrl}${id}`, updateDTO)
+    }
 }
