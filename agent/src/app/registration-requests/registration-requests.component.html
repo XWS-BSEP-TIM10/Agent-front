@@ -15,38 +15,42 @@
                             <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
                                 {{comp.name.charAt(0)}}{{comp.name.charAt(1)}}
                             </div>
-                           
+
                         </div>
                         <table style="width:100%;margin-left:2em">
                             <tr>
                                 <td style="zoom:1.5"><b>{{comp.name}}</b></td>
-                                
-                                
+
+
                                 <!--<td>{{comp.emailUser}} <i class="fa fa-user" aria-hidden="true"></i></td>-->
                                 <td></td>
                                 <td rowspan="3">
-                                 <div class="mb-3" style="margin-top:1em">
-                                     <label for="exampleFormControlTextarea1" class="form-label">Description: </label>
-                                     <textarea disabled class="form-control" id="exampleFormControlTextarea1" rows="3">{{comp.description}}</textarea>
-                                   </div>
+                                    <div class="mb-3" style="margin-top:1em">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Description:
+                                        </label>
+                                        <textarea disabled class="form-control" id="exampleFormControlTextarea1"
+                                            rows="3">{{comp.description}}</textarea>
+                                    </div>
 
                                 </td>
                             </tr>
                             <tr>
-                            <td>{{comp.address}} <i class="fa fa-map-marker" aria-hidden="true"></i></td>
-                             <td>{{comp.email}} <i class="fa fa-envelope" aria-hidden="true"></i></td>
-                         </tr>
-                         <tr>
-                             <td>{{comp.phoneNumber}} <i class="fa fa-phone"></i></td>
-                             <td>{{comp.website}} <i class="fa fa-globe" aria-hidden="true"></i></td>
-                         </tr>
-                         <tr>
-                             <td></td>
-                             <td></td>
-                             <td>
-                                <span style="float:right"><button style="margin-right:2em" type="button" class="btn btn-success" (click)="activateCompany(comp.id)">Approve</button><button type="button" class="btn btn-danger">Reject</button></span>
-                            </td>
-                         </tr>
+                                <td>{{comp.address}} <i class="fa fa-map-marker" aria-hidden="true"></i></td>
+                                <td>{{comp.email}} <i class="fa fa-envelope" aria-hidden="true"></i></td>
+                            </tr>
+                            <tr>
+                                <td>{{comp.phoneNumber}} <i class="fa fa-phone"></i></td>
+                                <td>{{comp.website}} <i class="fa fa-globe" aria-hidden="true"></i></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <span style="float:right"><button style="margin-right:2em" type="button"
+                                            class="btn btn-success" (click)="activateCompany(comp.id)">Approve</button>
+                                        <button type="button" class="btn btn-danger" (click)="deleteCompany(comp.id)">Reject</button></span>
+                                </td>
+                            </tr>
                         </table>
                     </div>
 
@@ -58,4 +62,3 @@
     </div>
 
 </div>
-

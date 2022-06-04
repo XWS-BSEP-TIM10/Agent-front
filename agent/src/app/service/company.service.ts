@@ -24,6 +24,10 @@ export class CompanyService {
         return this.http.put(`${config.baseUrl}${this.companyUrl}${companyId}/activate`, {})
     }
 
+    deleteCompany(companyId: string) {
+        return this.http.delete(`${config.baseUrl}${this.companyUrl}${companyId}/remove`)
+    }
+
     getActivatedCompanies() {
         return this.http.get(`${config.baseUrl}${this.activeCompaniesUrl}`)
     }

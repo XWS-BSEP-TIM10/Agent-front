@@ -30,4 +30,12 @@ export class RegistrationRequestsComponent implements OnInit {
     })
   }
 
+  deleteCompany(companyId: string) {
+    this.companyService.deleteCompany(companyId).subscribe((data: any) => {
+      this.loadCompanies()
+    }, (err: Error) => {
+      alert('An error occured... Please try again!')
+    })
+  }
+
 }
