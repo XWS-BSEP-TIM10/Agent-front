@@ -12,7 +12,7 @@ import { EmployerCompanyComponent } from '../employer-company.component';
 })
 export class JobsCompanyComponent implements OnInit {
 
-  requirements:any = [];
+  requirements: any = [];
   addingJob: boolean = false;
   isOwner: boolean | undefined;
   companyId: any;
@@ -30,7 +30,7 @@ export class JobsCompanyComponent implements OnInit {
 
   get f() { return this.addJobForm.controls; }
 
-  constructor(private employerCompanyComponent:EmployerCompanyComponent,  private route: ActivatedRoute, private jobOfferService:JobOfferService) { }
+  constructor(private employerCompanyComponent: EmployerCompanyComponent, private route: ActivatedRoute, private jobOfferService: JobOfferService) { }
 
   ngOnInit(): void {
     this.isOwner = this.employerCompanyComponent.ownCurrentCompany;
@@ -40,17 +40,17 @@ export class JobsCompanyComponent implements OnInit {
     })
   }
 
-  addJob(){
+  addJob() {
     this.addingJob = true;
   }
 
-  exitAddJob(){
+  exitAddJob() {
     this.addingJob = false;
     this.requirements = [];
     this.addJobForm.get('requirement')?.setValue('');
   }
 
-  addNewJob(){
+  addNewJob() {
     this.isSubmitted = true;
     if (this.addJobForm.invalid) {
       return
@@ -64,19 +64,28 @@ export class JobsCompanyComponent implements OnInit {
     }
 
 
-    this.jobOfferService.addJobOffer(newJobOfferDTO).subscribe((response:any) => {
-        if(this.addJobForm.get('dislinkt')?.value) {
-            
-          this.jobOfferService.shareJobOffer(response.id).subscribe((response) => {
-                
-      })
-        }
+    this.jobOfferService.addJobOffer(newJobOfferDTO).subscribe((response: any) => {
+      if (this.addJobForm.get('dislinkt')?.value) {
+
+        this.jobOfferService.shareJobOffer(response.id).subscribe((response) => {
+
+        },
+          (error) => {
+            alert("Api token not found!")
+          })
+      }
+      this.addJobForm.get('title')?.setValue("")
+      this.addJobForm.get('position')?.setValue("")
+      this.addJobForm.get('description')?.setValue("")
+      this.addJobForm.get('requirement')?.setValue("")
+      this.addJobForm.get('dislinkt')?.setValue("")
+      this.requirements = []
       
       this.jobOfferService.getJobOffers(this.companyId).subscribe((data: any) => {
         this.jobOffers = data;
       })
 
-  },
+    },
     )
 
 
@@ -87,11 +96,11 @@ export class JobsCompanyComponent implements OnInit {
     this.addJobForm.get('requirement')?.setValue('');
   }
 
-  addRequirement(){
+  addRequirement() {
     this.requirements.push(this.addJobForm.get('requirement')?.value)
   }
 
-  deleteRequirement(idx: number){
+  deleteRequirement(idx: number) {
     this.requirements.splice(idx, 1);
   }
 

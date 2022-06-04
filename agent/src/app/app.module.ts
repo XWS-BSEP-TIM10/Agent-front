@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,6 +18,8 @@ import { SalaryCompanyComponent } from './employer-company/salary-company/salary
 import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
 import { JobsCompanyComponent } from './employer-company/jobs-company/jobs-company.component';
 import { CompaniesComponent } from './companies/companies.component';
+import { ApiTokenComponent } from './api-token/api-token.component';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { CompaniesComponent } from './companies/companies.component';
     SalaryCompanyComponent,
     RegistrationRequestsComponent,
     JobsCompanyComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    ApiTokenComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,14 @@ import { CompaniesComponent } from './companies/companies.component';
     HttpClientModule,
     NgbModule
   ],
-  providers: [EmployerCompanyComponent],
+  providers: [
+    EmployerCompanyComponent,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

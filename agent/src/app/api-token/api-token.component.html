@@ -1,0 +1,13 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <form [formGroup]="tokenForm">
+            <input type="text" id="login" class="fadeIn second" formControlName="token" placeholder="Api token" />
+            <div *ngIf="isValid(f.token)" class="alert alert-danger">
+                <div *ngIf="f.token.hasError('required')">
+                    Token is required.
+                </div>
+            </div>
+            <input type="submit" class="fadeIn fourth" value="Add token" (click)="addToken()" />
+        </form>
+    </div>
+</div>

@@ -11,6 +11,7 @@
           <li *ngIf="!isLoggedIn()"><a class="nav-link scrollto " routerLink="" style="cursor: pointer;">Main Page</a></li>
           <li *ngIf="isAdmin()"><a class="nav-link scrollto " routerLink="/registration-requests" style="cursor: pointer;">Registration requests</a></li>
           <li *ngIf="!isAdmin()"><a class="nav-link scrollto " routerLink="/companies" style="cursor: pointer;">Companies</a></li>
+          <li *ngIf="isOwner()"><a class="nav-link scrollto " routerLink="/api-token" style="cursor: pointer;">Api token</a></li>
           <li *ngIf="!isAdmin() && isLoggedIn()"><a class="nav-link scrollto " (click) = "changeRoute()" style="cursor: pointer;">For employers</a></li>
           <!--<li><a class="nav-link scrollto " routerLink="/home" *ngIf="isLoggedIn()" style="cursor: pointer;">Home</a></li>-->
           <!--<li><a class="nav-link scrollto" (click)="goToUsersPage()" *ngIf="isLoggedIn()" style="cursor: pointer;">Profile</a></li>-->

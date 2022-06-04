@@ -33,6 +33,10 @@ export class NavbarComponent implements OnInit {
     return this.storageService.getRoleFromToken() === "ROLE_ADMIN"
   }
 
+  isOwner() {
+    return this.storageService.getRoleFromToken() === "ROLE_COMPANY_OWNER"
+  }
+
   isLoggedIn() {
     return this.storageService.getRoleFromToken() !== ""
   }
