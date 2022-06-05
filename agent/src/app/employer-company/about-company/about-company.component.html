@@ -1,0 +1,100 @@
+<div id="edit">
+
+    <form class="form-horizontal padding-10" [formGroup]="companyProfile">
+        <table class="table">
+            <tr class="tableRow">
+                <td>
+                    <p class="paragraph">Name</p>
+                </td>
+                <td>
+                    <input type="text" class="caption" formControlName="name" [readonly]="readOnlyForm">
+                    <div *ngIf="isValid(f.name)" class="alert alert-danger">
+                        <div *ngIf="f.name.errors?.required">
+                            Name is required.
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="paragraph">Address</p>
+                </td>
+                <td>
+                    <input type="text" class="caption" formControlName="address" [readonly]="readOnlyForm">
+                    <div *ngIf="isValid(f.address)" class="alert alert-danger">
+                        <div *ngIf="f.address.errors?.required">
+                            Address number is required.
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <br />
+            <tr class="tableRow">
+                <td>
+                    <p class="paragraph">Website</p>
+                </td>
+                <td>
+                    <input type="text" class="caption" formControlName="website" [readonly]="readOnlyForm">
+                    <div *ngIf="isValid(f.website)" class="alert alert-danger">
+                        <div *ngIf="f.website.errors?.required">
+                            Website is required.
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="paragraph">Phone number</p>
+                </td>
+                <td>
+                    <input type="text" class="caption" formControlName="phoneNumber" [readonly]="readOnlyForm">
+                    <div *ngIf="isValid(f.phoneNumber)" class="alert alert-danger">
+                        <div *ngIf="f.phoneNumber.errors?.required">
+                            Phone number is required.
+                        </div>
+                        <div *ngIf="f.phoneNumber.errors?.invalidNumber">
+                            Phone number could start with + and must be 8-15 Digits Long.
+                        </div>
+                    </div>
+                </td>
+               
+            </tr>
+            <br />
+            <tr class="tableRow">
+                <td>
+                    <p class="paragraph">Email</p>
+                </td>
+                <td>
+                    <input type="text" class="caption" formControlName="email" [readonly]="readOnlyForm">
+                    <div *ngIf="isValid(f.email)" class="alert alert-danger">
+                        <div *ngIf="f.email.hasError('required')">
+                            Email is required.
+                        </div>
+                        <div *ngIf="f.email.hasError('email')">
+                            Email is not valid.
+                        </div>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <button type="button" style="background-color: #56baed;border-color: #56baed;" class="btn btn-primary"
+                id="editButton" (click)="enableEditing()" *ngIf="readOnlyForm && isOwner"><i class="fa fa-pencil"
+                    aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-success" id="saveButton" (click)="saveChanges()"
+                *ngIf="!readOnlyForm">Save</button>
+            <!--<div class="form-group">
+                <label class="col-md-3 control-label">Biography</label>
+                <div class="col-md-8">
+                    <textarea class="form-control" formControlName="biography"></textarea>
+                </div>
+            </div>
+        -->
+        </table>
+        <div *ngIf="isValid(f.description)" class="alert alert-danger" style="width: 30%; margin-left: 20em;">
+            <div *ngIf="f.description.hasError('required')">
+                Description is required.
+            </div>
+        </div>
+        <textarea class="form-control" id="description" formControlName="description" rows="10"
+            [readonly]="readOnlyForm"></textarea>
+
+    </form>
+
+</div>

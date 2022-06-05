@@ -1,0 +1,44 @@
+.table{
+    align-items: left;
+    width: 70%;
+    margin-left: 22em;
+}
+
+.tableRow{
+    border: none;
+}
+
+.caption{
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.paragraph{
+    font-size: 20px;
+}
+
+.caption:focus{
+    outline: none;
+    border-bottom: 1px solid lightgray;
+}
+
+#editButton{
+    width: 50%;
+    position: relative;
+    left: 80em;
+}
+#saveButton{   
+    width: 50%;
+    position: relative;
+    left: 80em;
+}
+
+#description{
+    width: 70%;
+    margin-left: 20em;
+    margin-bottom: 10em;
+    padding: 3em;
+}

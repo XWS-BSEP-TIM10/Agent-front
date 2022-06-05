@@ -1,0 +1,47 @@
+<div *ngIf="!salaryDiv">
+    <button *ngIf="!isOwner" type="button" class="btn btn-primary" id="addSalary"
+            style="margin-left: 100em;background-color: #56baed;border-color: #56baed;" (click)="addSalary()">Add
+            salary</button>
+    <div *ngIf="salaries.length == 0">
+        <h1 style="margin-left: 18em; margin-top: 2em">There are no salaries for this company</h1>
+    </div>
+    <div *ngIf="salaries.length != 0">
+        <table class="tableSalary">
+            <tr class="tableHeadRow">
+                <th class="headers">Position</th>
+                <th class="headers">Salary</th>
+            </tr>
+
+            <tr class="tableRow" *ngFor="let position of salaries">
+
+                <td class="content">{{position.position}}</td>
+                <td class="contentAverage">{{position.value}} EUR</td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div *ngIf="salaryDiv">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <i class="fa fa-close" aria-hidden="true" (click)="exitSalaryDiv()"
+                style="position: relative; left: 14em; bottom: 3em;"></i>
+            <form [formGroup]="addSalaryForm">
+                <input type="text" class="fadeIn second" placeholder="Position" formControlName="position">
+                <div *ngIf="isValid(f.position)" class="alert alert-danger">
+                    <div *ngIf="f.position.hasError('required')">
+                        Position is required.
+                    </div>
+                </div>
+                <input type="number" class="fadeIn second" placeholder="Value (EUR)" formControlName="value">
+                <div *ngIf="isValid(f.value)" class="alert alert-danger">
+                    <div *ngIf="f.value.hasError('required')">
+                        Value is required.
+                    </div>
+                </div>
+                <input type="submit" class="fadeIn fourth" value="Add salary" (click)="addNewSalary()" />
+            </form>
+        </div>
+    </div>
+</div>

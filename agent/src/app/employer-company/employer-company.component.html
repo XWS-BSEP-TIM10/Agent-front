@@ -1,0 +1,79 @@
+<div class="wrapper fadeInDown" *ngIf="!isOwner && isApproved">
+    <!--ako nema kompaniju ova forma-->
+    <div id="formContent">
+        <h1 class="heading">Registration</h1>
+        <br />
+        <p class="list">Why you should register?</p>
+        <ul class="list">
+            <li>To have an insight into all the ratings and impressions without limitation</li>
+            <li>To present your company in the best way and thus attract potential candidates</li>
+            <li>That you can respond to user impressions</li>
+        </ul>
+
+        <form [formGroup]="registerForm">
+            <h1 class="heading">Company</h1>
+            <input type="text" id="name" class="fadeIn second" formControlName="name" placeholder="Company name" />
+            <input type="text" id="website" class="fadeIn third" formControlName="website" placeholder="Website" />
+            <input type="text" id="email" class="fadeIn second" formControlName="email" placeholder="Email" />
+            <div *ngIf="isValid(f.email)" class="alert alert-danger">
+                <div *ngIf="f.email.hasError('required')">
+                    Email is required.
+                </div>
+                <div *ngIf="f.email.hasError('email')">
+                    Email is not valid.
+                </div>
+            </div>
+            <input type="text" id="phoneNumber" class="fadeIn third" formControlName="phoneNumber"
+                placeholder="Phone number" />
+            <div *ngIf="isValid(f.phoneNumber)" class="alert alert-danger">
+                <div *ngIf="f.phoneNumber.errors?.required">
+                    Phone number is required.
+                </div>
+                <div *ngIf="f.phoneNumber.errors?.invalidNumber">
+                    Phone number could start with + and must be 8-15 Digits Long.
+                </div>
+            </div>
+            <input type="text" id="address" class="fadeIn second" formControlName="address" placeholder="Address" />
+            <textarea class="form-control" id="description" formControlName="description" placeholder="Description"
+                rows="6"></textarea>
+            <input type="submit" class="fadeIn fourth" value="Send request" (click)="addCompany()" />
+        </form>
+    </div>
+</div>
+
+<div *ngIf="!isApproved">
+    <h1 style="text-align:center;margin-top:3em">Your company registration request is waiting for approval</h1>
+</div>
+
+<div class="company" *ngIf="isOwner && isApproved">
+    <img class="captionImage" src="../../assets/img/caption.jpg" />
+    <div class="descriptionDiv">
+        <h1>{{company.name}}
+            <span class="rating"><i class="fa fa-star" aria-hidden="true"></i>{{company.rating}}</span>
+        </h1>
+        {{company.address}}
+    </div>
+    <nav id="navbar" class="navbar" style="margin-left: -60em; margin-top:-7em">
+        <ul>
+            <li class="listItem"><a class="nav-link scrollto"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['about-company'] } }]"
+                    style="cursor: pointer;">About</a></li>
+            <li class="listItem"><a class="nav-link scrollto"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['comments-company'] } }]"
+                    style="cursor: pointer;">Comments</a></li>
+            <li class="listItem"><a class="nav-link scrollto"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['salary-company'] } }]"
+                    style="cursor: pointer;">Salary</a></li>
+            <li class="listItem"><a class="nav-link scrollto"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['jobs-company'] } }]"
+                    style="cursor: pointer;">Job offers</a></li>
+            <li class="listItem"><a class="nav-link scrollto"
+                    [routerLink]="['/employer-company/'+company.id, { outlets: { 'company-details': ['interview-company'] } }]"
+                    style="cursor: pointer;">Interview</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+
+    <router-outlet name="company-details"></router-outlet>
+
+</div>
