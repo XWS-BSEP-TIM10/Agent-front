@@ -21,7 +21,6 @@ import { AuthenticationGuard } from './auth-guards/authentication.guard';
 const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
 { path: 'login', component: LoginComponent },
 { path: 'registration', component: RegistrationComponent },
-{ path: 'users/:id', component: UserPageComponent },
 {
   path: 'employer-company/:id', component: EmployerCompanyComponent, children:
     [
