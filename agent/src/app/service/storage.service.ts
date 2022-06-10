@@ -43,7 +43,7 @@ export class StorageService {
       const tokenSplit = jwtToken.split('.')
       const decoded = decodeURIComponent(escape(window.atob(tokenSplit[1])))
       const obj = JSON.parse(decoded)
-      return obj.sub
+      return obj.userId
     }
     return ""
   }
