@@ -59,7 +59,9 @@ export class RegistrationComponent implements OnInit {
     let registrationDTO: RegistrationDTO = {
       email: this.registerForm.get('email')?.value,
       password: this.registerForm.get('password')?.value,
+      confirmPassword: this.registerForm.get('confirmPassword')?.value
     }
+    console.log(registrationDTO)
 
     this.authService.signup(registrationDTO).subscribe((response) => {
       this.router.navigateByUrl('/')
