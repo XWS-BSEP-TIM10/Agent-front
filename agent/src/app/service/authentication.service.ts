@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginDTO } from "../dto/LoginDTO";
 import { RegistrationDTO } from "../dto/RegistrationDTO";
 import { NewPasswordDTO } from "../dto/NewPasswordDto";
+import { ChangePasswordDTO } from "../dto/ChangePasswordDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class AuthenticationService {
   private changePasswordRecoveryUrl = "/auth/recover/changePassword"
   private sendPasswordlessLoginEmailUrl = "/auth/password-less"
   private passwordlessLoginUrl = "/auth/login/password-less"
+  private changePasswordUrl = "/users/change-password"
   private checkTokenUrl = "/auth/checkToken"
   private refreshTokenUrl = "/auth/refreshToken"
 
@@ -48,6 +50,10 @@ export class AuthenticationService {
 
   passwordlessLogin(token: String){
     return this.http.get(`${config.baseUrl}${this.passwordlessLoginUrl}/${token}`)
+  }
+
+  changePassword(changePasswordDTO: ChangePasswordDTO) {
+    return this.http.put(`${config.baseUrl}${this.changePasswordUrl}`, changePasswordDTO)
   }
 
   checkToken(token: String){

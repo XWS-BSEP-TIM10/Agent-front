@@ -20,6 +20,7 @@ import { AuthenticationGuard } from './auth-guards/authentication.guard';
 import { AccountActivatedComponent } from './account-activated/account-activated.component';
 import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
 import { PasswordlessLoginComponent } from './passwordless-login/passwordless-login.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
 { path: 'login', component: LoginComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
 { path: 'api-token', component: ApiTokenComponent, canActivate:[AuthenticationGuard, CompanyOwnerGuard]},
 { path: 'confirm/:token', component: AccountActivatedComponent},
 { path: 'recover/:token', component: AccountRecoveryComponent},
-{ path: 'login/password-less/:token', component: PasswordlessLoginComponent}
+{ path: 'login/password-less/:token', component: PasswordlessLoginComponent},
+{ path: 'change-password', component: ChangePasswordComponent, canActivate:[AuthenticationGuard]}
 ];
 
 @NgModule({
