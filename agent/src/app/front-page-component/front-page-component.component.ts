@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
+import { StorageService } from '../service/storage.service';
 
 @Component({
   selector: 'app-front-page-component',
@@ -8,7 +9,7 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class FrontPageComponentComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storageService: StorageService) { }
 
   ngOnInit(): void {
   }

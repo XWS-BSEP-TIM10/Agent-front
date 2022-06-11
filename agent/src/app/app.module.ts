@@ -20,6 +20,10 @@ import { JobsCompanyComponent } from './employer-company/jobs-company/jobs-compa
 import { CompaniesComponent } from './companies/companies.component';
 import { ApiTokenComponent } from './api-token/api-token.component';
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { AccountActivatedComponent } from './account-activated/account-activated.component';
+import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
+import { PasswordlessLoginComponent } from './passwordless-login/passwordless-login.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { AuthInterceptorService } from './auth-interceptor.service';
     RegistrationRequestsComponent,
     JobsCompanyComponent,
     CompaniesComponent,
-    ApiTokenComponent
+    ApiTokenComponent,
+    AccountActivatedComponent,
+    AccountRecoveryComponent,
+    PasswordlessLoginComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

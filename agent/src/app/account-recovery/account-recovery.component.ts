@@ -1,58 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
-import { RegistrationDTO } from '../dto/RegistrationDTO';
+import { NewPasswordDTO } from "../dto/NewPasswordDto";
 import { isContainsLowercase } from '../validators/isContainsLowercase-validator'
 import { isContainsNumber } from '../validators/isContainsNumber-validator'
 import { isContainsSymbol } from '../validators/isContainsSymbol-validator'
 import { isContainsUppercase } from '../validators/isContainsUppercase-validator'
 import { isValidLengthPassword } from '../validators/isValidLengthPassword-validator'
 import { isWhitespace } from '../validators/isWhitespace-validator'
+import { ActivatedRoute } from '@angular/router'
 import * as zxcvbn from 'zxcvbn'
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  selector: 'app-account-recovery',
+  templateUrl: './account-recovery.component.html',
+  styleUrls: ['./account-recovery.component.scss']
 })
-export class RegistrationComponent implements OnInit {
-
-  constructor(private authService: AuthenticationService, private router: Router) { }
+export class AccountRecoveryComponent implements OnInit {
 
   isSubmitted = false;
-  responseError = "";
   passwordError = "";
   confirmPasswordError = "";
+  tokenValid = false;
   passwordStrength = "";
   strengthClass = "";
-  sendRequest = false;
-  gender = "";
 
-  registerForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, isContainsLowercase,
+  constructor(private router: Router, private authService: AuthenticationService, private route: ActivatedRoute) { }
+
+  recoveryForm = new FormGroup({
+    newPassword: new FormControl('', [Validators.required, isContainsLowercase,
       isContainsNumber, isContainsSymbol, isContainsUppercase,
       isValidLengthPassword, isWhitespace]),
-    confirmPassword: new FormControl('', [Validators.required])
+    repeatedNewPassword: new FormControl('', [Validators.required])
   })
 
+  get f() { return this.recoveryForm.controls; }
+
+
   ngOnInit(): void {
-  }
-
-  get firstName() { return this.registerForm.get('firstName'); }
-  get f() { return this.registerForm.controls; }
-
-  login() {
-    this.router.navigate(['login']);
-  }
-
-  registration() {
-    this.router.navigate(['registration']);
+    let token = decodeURI(this.route.snapshot.paramMap.get('token') || "")
+    this.authService.checkToken(token).subscribe(
+      (data: any) => {
+        this.tokenValid = true;
+      }, (err: Error) => {
+        this.tokenValid = false;
+      });
   }
 
   checkPass() {
-    let password = this.registerForm.get('password');
+    let password = this.recoveryForm.get('newPassword');
     if (!password?.valid) {
       this.passwordStrength = "";
       return
@@ -71,37 +68,46 @@ export class RegistrationComponent implements OnInit {
     this.passwordStrength = "Strength: " + strength + " " + result.feedback.warning + ". " + result.feedback.suggestions;
   }
 
-  registerUser() {
-    if(this.registerForm.get('password')?.value !== this.registerForm.get('confirmPassword')?.value){
-      this.confirmPasswordError = "The password conformation does not match";
+  changePassword() {
+    this.isSubmitted = true;
+    this.passwordError = "";
+    this.confirmPasswordError = "";
+
+    if (this.recoveryForm.invalid) {
       return
     }
+    
+    var password = this.recoveryForm.get('newPassword')?.value;
 
-    var password = this.registerForm.get('password')?.value;
     const result = zxcvbn(password);
 
     if (result.score != 3 && result.score != 4) {
       return
     }
 
-    let registrationDTO: RegistrationDTO = {
-      email: this.registerForm.get('email')?.value,
-      password: this.registerForm.get('password')?.value,
-      confirmPassword: this.registerForm.get('confirmPassword')?.value
-    }
-    console.log(registrationDTO)
+    var repeatedPassword = this.recoveryForm.get('repeatedNewPassword')?.value;
 
-    this.authService.signup(registrationDTO).subscribe((response) => {
-      this.router.navigateByUrl('/')
-    },
-      (error) => {
-        this.sendRequest = false;
-        if (error.status == 400) {
-            this.responseError = 'Username already exists.'
-        } else if (error.status == 500) {
-          this.responseError = 'An error occurred, please try again.'
-        }
-      })
+    if (password != repeatedPassword) {
+      this.confirmPasswordError = "The password conformation does not match";
+      return
+    }
+
+    let newPasswordDTO: NewPasswordDTO = {
+      newPassword: this.recoveryForm.get('newPassword')?.value,
+      repeatedNewPassword: this.recoveryForm.get('repeatedNewPassword')?.value
+    }
+    let token = decodeURI(this.route.snapshot.paramMap.get('token') || "")
+    this.authService.changePasswordRecovery(token, newPasswordDTO).subscribe((data: any) => {
+      alert('success')
+      this.recoveryForm.get('newPassword')?.setValue('')
+      this.recoveryForm.get('repeatedNewPassword')?.setValue('')
+    }, (err: Error) => {
+      alert('failure')
+      this.recoveryForm.get('newPassword')?.setValue('')
+      this.recoveryForm.get('repeatedNewPassword')?.setValue('')
+    })
+
+    this.router.navigateByUrl('/login')
   }
 
   togglePass(id: string, toggleId: string) {
@@ -120,7 +126,5 @@ export class RegistrationComponent implements OnInit {
     return (value.invalid && value.touched) || (value.dirty && value.invalid) ||
       (value.untouched && this.isSubmitted);
   }
-
-
 
 }

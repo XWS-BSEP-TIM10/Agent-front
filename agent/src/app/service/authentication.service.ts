@@ -3,14 +3,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginDTO } from "../dto/LoginDTO";
 import { RegistrationDTO } from "../dto/RegistrationDTO";
+import { NewPasswordDTO } from "../dto/NewPasswordDto";
+import { ChangePasswordDTO } from "../dto/ChangePasswordDTO";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private loginUrl = "/users/login"
+  private loginUrl = "/auth/login"
   private signupUrl = "/users/signup"
+  private acctivateAccountUrl = "/auth/confirm"
+  private sendRecoveryEmailUrl = "/auth/recover"
+  private changePasswordRecoveryUrl = "/auth/recover/changePassword"
+  private sendPasswordlessLoginEmailUrl = "/auth/password-less"
+  private passwordlessLoginUrl = "/auth/login/password-less"
+  private changePasswordUrl = "/users/change-password"
   private checkTokenUrl = "/auth/checkToken"
   private refreshTokenUrl = "/auth/refreshToken"
 
@@ -22,6 +30,30 @@ export class AuthenticationService {
 
   signup(registrationDTO: RegistrationDTO) {
     return this.http.post(`${config.baseUrl}${this.signupUrl}`, registrationDTO)
+  }
+
+  activateAccount(token: String) {
+    return this.http.get(`${config.baseUrl}${this.acctivateAccountUrl}/${token}`)
+  }
+
+  sendRecoveryEmail(email: String) {
+    return this.http.get(`${config.baseUrl}${this.sendRecoveryEmailUrl}?email=${email}`)
+  }
+
+  changePasswordRecovery(token: String, newPasswordDTO: NewPasswordDTO) {
+    return this.http.put(`${config.baseUrl}${this.changePasswordRecoveryUrl}/${token}`, newPasswordDTO)
+  }
+
+  sendPasswordlessLoginEmail(email: String) {
+    return this.http.get(`${config.baseUrl}${this.sendPasswordlessLoginEmailUrl}?email=${email}`)
+  }
+
+  passwordlessLogin(token: String){
+    return this.http.get(`${config.baseUrl}${this.passwordlessLoginUrl}/${token}`)
+  }
+
+  changePassword(changePasswordDTO: ChangePasswordDTO) {
+    return this.http.put(`${config.baseUrl}${this.changePasswordUrl}`, changePasswordDTO)
   }
 
   checkToken(token: String){

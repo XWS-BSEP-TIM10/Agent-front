@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginDTO } from '../dto/LoginDTO';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../service/authentication.service';
@@ -70,10 +70,32 @@ export class LoginComponent implements OnInit {
 
   sendRecoveryMail() {
     this.isSubmitted = true;
+    if (this.emailRecoveryForm.invalid) {
+      return
+    }
+    this.forgottenPassword = false;
+    var email = encodeURI(this.emailRecoveryForm.get('email')?.value);
+    this.authService.sendRecoveryEmail(email).subscribe(
+      (data: any) => {
+        alert("Recovery link sent to your mail")
+      }, (err: Error) => {
+        alert("User with this email does not exist...")
+      });
   }
 
   sendPasswordlessEmail() {
     this.isSubmitted = true;
+    if (this.emailRecoveryForm.invalid) {
+      return
+    }
+    this.passwordless = false;
+    var email = encodeURI(this.emailRecoveryForm.get('email')?.value);
+    this.authService.sendPasswordlessLoginEmail(email).subscribe(
+      (data: any) => {
+        alert("Link for passwordless login sent to your mail")
+      }, (err: Error) => {
+        alert("User with this email does not exist...")
+      });
   }
 
   isValid(value: any): boolean {
