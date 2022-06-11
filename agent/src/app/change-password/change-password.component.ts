@@ -8,9 +8,10 @@ import { isContainsSymbol } from '../validators/isContainsSymbol-validator'
 import { isContainsUppercase } from '../validators/isContainsUppercase-validator'
 import { isValidLengthPassword } from '../validators/isValidLengthPassword-validator'
 import { isWhitespace } from '../validators/isWhitespace-validator'
-import { ActivatedRoute } from '@angular/router'; 
-import { ChangePasswordDTO } from '../dto/ChangePasswordDTO';
-import { StorageService } from '../service/storage.service';
+import { ActivatedRoute } from '@angular/router' 
+import { ChangePasswordDTO } from '../dto/ChangePasswordDTO'
+import { StorageService } from '../service/storage.service'
+import * as zxcvbn from 'zxcvbn'
 
 @Component({
   selector: 'change-password',
@@ -24,6 +25,8 @@ export class ChangePasswordComponent implements OnInit {
   passwordError = "";
   confirmPasswordError = "";
   tokenValid = false;
+  passwordStrength = "";
+  strengthClass = "";
 
   constructor(private router: Router, private authService: AuthenticationService, private storageService: StorageService, private route: ActivatedRoute) { }
 
@@ -41,6 +44,26 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  checkPass() {
+    let password = this.recoveryForm.get('newPassword');
+    if (!password?.valid) {
+      this.passwordStrength = "";
+      return
+    }
+
+    const result = zxcvbn(password?.value);
+    let strength = "";
+    switch (result.score) {
+      case 0: { this.strengthClass = "alert alert-danger"; strength = "Worst"; break;}
+      case 1: { this.strengthClass = "alert alert-danger"; strength = "Bad"; break;}
+      case 2: {this.strengthClass = "alert alert-warning"; strength = "Weak"; break;}
+      case 3: {this.strengthClass = "alert alert-info"; strength = "Good"; break;}
+      default: {this.strengthClass = "alert alert-success"; strength = "Strong"; break;}
+        
+    }
+    this.passwordStrength = "Strength: " + strength + " " + result.feedback.warning + ". " + result.feedback.suggestions;
+  }
+
   changePassword() {
     this.isSubmitted = true;
     this.oldPasswordError = "";
@@ -52,6 +75,13 @@ export class ChangePasswordComponent implements OnInit {
     }
     
     var password = this.recoveryForm.get('newPassword')?.value;
+
+    const result = zxcvbn(password);
+
+    if (result.score != 3 && result.score != 4) {
+      return
+    }
+
     var repeatedPassword = this.recoveryForm.get('repeatedNewPassword')?.value;
 
     if (password != repeatedPassword) {
