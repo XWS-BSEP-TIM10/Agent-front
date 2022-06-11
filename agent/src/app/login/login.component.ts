@@ -70,6 +70,17 @@ export class LoginComponent implements OnInit {
 
   sendRecoveryMail() {
     this.isSubmitted = true;
+    if (this.emailRecoveryForm.invalid) {
+      return
+    }
+    this.forgottenPassword = false;
+    var email = encodeURI(this.emailRecoveryForm.get('email')?.value);
+    this.authService.sendRecoveryEmail(email).subscribe(
+      (data: any) => {
+        alert("Recovery link sent to your mail")
+      }, (err: Error) => {
+        alert("An error occured, please try again...")
+      });
   }
 
   sendPasswordlessEmail() {

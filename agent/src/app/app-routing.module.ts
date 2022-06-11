@@ -18,6 +18,7 @@ import { UserGuard } from './auth-guards/user.guard';
 import { CompanyOwnerGuard } from './auth-guards/company-owner.guard';
 import { AuthenticationGuard } from './auth-guards/authentication.guard';
 import { AccountActivatedComponent } from './account-activated/account-activated.component';
+import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
 
 const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
 { path: 'login', component: LoginComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
 { path: 'registration-requests', component: RegistrationRequestsComponent,  canActivate:[AuthenticationGuard, AdminGuard] },
 { path: 'companies', component: CompaniesComponent },
 { path: 'api-token', component: ApiTokenComponent, canActivate:[AuthenticationGuard, CompanyOwnerGuard]},
-{ path: 'confirm/:token', component: AccountActivatedComponent}
+{ path: 'confirm/:token', component: AccountActivatedComponent},
+{ path: 'recover/:token', component: AccountRecoveryComponent}
 ];
 
 @NgModule({

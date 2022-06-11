@@ -21,6 +21,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { ApiTokenComponent } from './api-token/api-token.component';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { AccountActivatedComponent } from './account-activated/account-activated.component';
+import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AccountActivatedComponent } from './account-activated/account-activated
     JobsCompanyComponent,
     CompaniesComponent,
     ApiTokenComponent,
-    AccountActivatedComponent
+    AccountActivatedComponent,
+    AccountRecoveryComponent
   ],
   imports: [
     BrowserModule,
