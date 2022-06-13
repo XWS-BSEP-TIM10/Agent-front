@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployerCompanyComponent } from '../employer-company.component';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { InterviewService } from './../../service/interview.service'
 import { ActivatedRoute } from '@angular/router';
 import { AddInterviewDTO } from '../../dto/AddInterviewDTO';
@@ -33,11 +33,11 @@ export class InterviewCompanyComponent implements OnInit {
 
   get f() { return this.addInterviewForm.controls; }
 
-  addInterviewForm = new FormGroup({
-    position: new FormControl('', Validators.required),
-    title: new FormControl('', Validators.required),
-    hr: new FormControl('', Validators.required),
-    tech: new FormControl('', Validators.required)
+  addInterviewForm = new UntypedFormGroup({
+    position: new UntypedFormControl('', Validators.required),
+    title: new UntypedFormControl('', Validators.required),
+    hr: new UntypedFormControl('', Validators.required),
+    tech: new UntypedFormControl('', Validators.required)
   })
 
   constructor(private storageService: StorageService, private employerCompanyComponent: EmployerCompanyComponent, private interviewService: InterviewService, private route: ActivatedRoute) { }

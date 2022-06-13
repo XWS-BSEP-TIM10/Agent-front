@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiTokenDTO } from '../dto/ApiTokenDTO';
 import { StorageService } from '../service/storage.service';
@@ -14,8 +14,8 @@ export class ApiTokenComponent implements OnInit {
 
   isSubmitted: boolean = false;
 
-  tokenForm = new FormGroup({
-    token: new FormControl('', [Validators.required])
+  tokenForm = new UntypedFormGroup({
+    token: new UntypedFormControl('', [Validators.required])
   })
 
   get f() { return this.tokenForm.controls; }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CompanyService } from '../service/company.service';
 import { StorageService } from '../service/storage.service';
@@ -16,13 +16,13 @@ import { phoneNumberValidator } from '../validators/phoneNumber-validator';
 @Injectable()
 export class EmployerCompanyComponent implements OnInit {
 
-  registerForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.required]),
-    website: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phoneNumber: new FormControl('', [Validators.required, phoneNumberValidator]),
-    description: new FormControl('', [Validators.required]),
+  registerForm = new UntypedFormGroup({
+    name: new UntypedFormControl('', [Validators.required]),
+    address: new UntypedFormControl('', [Validators.required]),
+    website: new UntypedFormControl('', [Validators.required]),
+    email: new UntypedFormControl('', [Validators.required, Validators.email]),
+    phoneNumber: new UntypedFormControl('', [Validators.required, phoneNumberValidator]),
+    description: new UntypedFormControl('', [Validators.required]),
   })
 
   company: any = {}

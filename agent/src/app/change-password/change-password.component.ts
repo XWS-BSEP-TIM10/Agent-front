@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 import { isContainsLowercase } from '../validators/isContainsLowercase-validator'
@@ -30,12 +30,12 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthenticationService, private storageService: StorageService, private route: ActivatedRoute) { }
 
-  recoveryForm = new FormGroup({
-    oldPassword: new FormControl('', [Validators.required]),
-    newPassword: new FormControl('', [Validators.required, isContainsLowercase,
+  recoveryForm = new UntypedFormGroup({
+    oldPassword: new UntypedFormControl('', [Validators.required]),
+    newPassword: new UntypedFormControl('', [Validators.required, isContainsLowercase,
       isContainsNumber, isContainsSymbol, isContainsUppercase,
       isValidLengthPassword, isWhitespace]),
-    repeatedNewPassword: new FormControl('', [Validators.required])
+    repeatedNewPassword: new UntypedFormControl('', [Validators.required])
   })
 
   get f() { return this.recoveryForm.controls; }

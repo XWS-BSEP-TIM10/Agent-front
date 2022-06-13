@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UpdateCompanyDTO } from '../../dto/UpdateCompanyDTO';
 import { CompanyService } from '../../service/company.service';
@@ -20,13 +20,13 @@ export class AboutCompanyComponent implements OnInit {
 
   company: any = {}
 
-  companyProfile = new FormGroup({
-    name: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phoneNumber: new FormControl('', [Validators.required, phoneNumberValidator]),
-    website: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required)
+  companyProfile = new UntypedFormGroup({
+    name: new UntypedFormControl('', Validators.required),
+    address: new UntypedFormControl('', Validators.required),
+    email: new UntypedFormControl('', [Validators.required, Validators.email]),
+    phoneNumber: new UntypedFormControl('', [Validators.required, phoneNumberValidator]),
+    website: new UntypedFormControl('', Validators.required),
+    description: new UntypedFormControl('', Validators.required)
   })
 
   constructor(private employerCompanyComponent: EmployerCompanyComponent, private route: ActivatedRoute, private companyService: CompanyService, private storageService: StorageService) { }
