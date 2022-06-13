@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NewCommentDTO } from 'src/app/dto/NewCommentDTO';
 import { CommentService } from 'src/app/service/comment.service';
@@ -50,12 +50,12 @@ export class CommentsCompanyComponent implements OnInit {
 
    comments: any;
 
-  addCommentForm = new FormGroup({
-    title: new FormControl('', Validators.required),
-    position: new FormControl('', Validators.required),
-    positive: new FormControl('', Validators.required),
-    negative: new FormControl('', Validators.required),
-    rating: new FormControl()
+  addCommentForm = new UntypedFormGroup({
+    title: new UntypedFormControl('', Validators.required),
+    position: new UntypedFormControl('', Validators.required),
+    positive: new UntypedFormControl('', Validators.required),
+    negative: new UntypedFormControl('', Validators.required),
+    rating: new UntypedFormControl()
   })
 
   constructor(private employerCompanyComponent:EmployerCompanyComponent, private storageService:StorageService, private route: ActivatedRoute, private commentService:CommentService) { }

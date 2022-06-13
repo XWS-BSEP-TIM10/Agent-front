@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { EmployerCompanyComponent } from '../employer-company.component';
 import { SalaryService } from '../../service/salary.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,9 +19,9 @@ export class SalaryCompanyComponent implements OnInit {
 
   salaries: any = [];
 
-  addSalaryForm = new FormGroup({
-    position: new FormControl('', Validators.required),
-    value: new FormControl('', Validators.required)
+  addSalaryForm = new UntypedFormGroup({
+    position: new UntypedFormControl('', Validators.required),
+    value: new UntypedFormControl('', Validators.required)
   })
 
 

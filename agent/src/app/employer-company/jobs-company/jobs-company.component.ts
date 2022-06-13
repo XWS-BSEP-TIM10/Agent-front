@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NewJobOfferDTO } from 'src/app/dto/NewJobOfferDTO';
 import { JobOfferService } from 'src/app/service/job-offer.service';
@@ -20,12 +20,12 @@ export class JobsCompanyComponent implements OnInit {
 
   jobOffers: any = [];
 
-  addJobForm = new FormGroup({
-    title: new FormControl('', Validators.required),
-    position: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    requirement: new FormControl('', Validators.required),
-    dislinkt: new FormControl()
+  addJobForm = new UntypedFormGroup({
+    title: new UntypedFormControl('', Validators.required),
+    position: new UntypedFormControl('', Validators.required),
+    description: new UntypedFormControl('', Validators.required),
+    requirement: new UntypedFormControl('', Validators.required),
+    dislinkt: new UntypedFormControl()
   })
 
   get f() { return this.addJobForm.controls; }
