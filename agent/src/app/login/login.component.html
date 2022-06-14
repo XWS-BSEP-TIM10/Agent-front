@@ -4,12 +4,16 @@
       <div *ngIf="signInError" class="alert alert-danger">
         {{signInError}}
       </div>
-      <input type="text" id="login" class="fadeIn second" name="email" placeholder="email" ngModel />
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" ngModel />
+      <input  type="text" id="login" class="fadeIn second" name="email" placeholder="email" ngModel [hidden]="is2FAEnabled" />
+      <input  type="password" id="password" class="fadeIn third" name="password" placeholder="password" ngModel [hidden]="is2FAEnabled" />
+      <div *ngIf="codeError" class="alert alert-danger">
+        {{codeError}}
+      </div>
+      <input *ngIf="is2FAEnabled" type="text" id="code" class="fadeIn third" name="code" placeholder="code" ngModel />
       <input type="submit" class="fadeIn fourth" value="Sign In" (click)="loginUser(credentials)" />
 
       <div id="formFooter">
-        <a class="underlineHover" (click)="forgotPassword()" id="loginSubmit">Forgot Password?</a> 
+        <a class="underlineHover" (click)="forgotPassword()" id="loginSubmit">Forgot Password?</a>
         <br/>
         <a class="underlineHover" (click)="passwordlessLogin()" id="loginSubmit">Passwordless login?</a>
       </div>

@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   forgottenPassword: boolean = false;
   passwordless: boolean = false;
   signInError = "";
+  is2FAEnabled = false;
+  codeError = ""
 
   constructor(private authService: AuthenticationService, private storageService: StorageService, private router: Router) { }
 
@@ -39,9 +41,11 @@ export class LoginComponent implements OnInit {
 
   loginUser(credentials: NgForm) {
     this.signInError = ""
-    let loginDTO: LoginDTO = { email: credentials.value.email, password: credentials.value.password };
+    let loginDTO: LoginDTO = { email: credentials.value.email, password: credentials.value.password, code: credentials.value.code};
+    console.log(loginDTO)
     this.authService.login(loginDTO).subscribe((data: any) => {
       this.storageService.storeTokenData(data.jwt, data.refreshToken);
+      console.log(data)
       switch (this.storageService.getRoleFromToken()) {
         case 'ROLE_USER':
           this.router.navigateByUrl('/companies')
@@ -53,8 +57,17 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/registration-requests')
           break;
       }
-    }, (err: Error) => {
-      this.signInError = "Oops! The username and password combination is incorrect. Please try again!"
+    }, (err) => {
+      console.log(err.status)
+      if(err.status == 300) {
+        if(this.is2FAEnabled) {
+          this.codeError = "Oops! Wrong code! Please try again..."
+        } else {
+          this.is2FAEnabled = true;
+        }
+      } else {
+        this.signInError = "Oops! The username and password combination is incorrect. Please try again..."
+      }
     })
   }
 

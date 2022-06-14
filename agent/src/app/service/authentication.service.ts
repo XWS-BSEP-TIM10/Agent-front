@@ -5,6 +5,7 @@ import { LoginDTO } from "../dto/LoginDTO";
 import { RegistrationDTO } from "../dto/RegistrationDTO";
 import { NewPasswordDTO } from "../dto/NewPasswordDto";
 import { ChangePasswordDTO } from "../dto/ChangePasswordDTO";
+import { TwoFADTO } from "../dto/TwoFADTO";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class AuthenticationService {
   private sendPasswordlessLoginEmailUrl = "/auth/password-less"
   private passwordlessLoginUrl = "/auth/login/password-less"
   private changePasswordUrl = "/users/change-password"
+  private enableTwoFAUrl = "/auth/2fa"
+  private checkTwoFAStatusUrl = "/auth/2fa/status"
   private checkTokenUrl = "/auth/checkToken"
   private refreshTokenUrl = "/auth/refreshToken"
 
@@ -58,6 +61,14 @@ export class AuthenticationService {
 
   checkToken(token: String){
     return this.http.get(`${config.baseUrl}${this.checkTokenUrl}/${token}`)
+  }
+
+  sendEnableTwoFA(twoFADTO: TwoFADTO) {
+    return this.http.put(`${config.baseUrl}${this.enableTwoFAUrl}`, twoFADTO)
+  }
+
+  checkTwoFAStatus(userId: String){
+    return this.http.get(`${config.baseUrl}${this.checkTwoFAStatusUrl}/${userId}`)
   }
 
   refreshToken(refreshToken: any){
