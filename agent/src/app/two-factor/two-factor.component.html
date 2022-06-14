@@ -1,0 +1,10 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <form>
+            <input type="checkbox" name="enable" style="transform: scale(1.5); accent-color:#56baed;" [checked]="false" [(ngModel)]="isChecked"/>
+            <label style="margin-left: 7%; margin-bottom: 5%;transform: scale(1.1)"> Enable two-factor authentication </label>
+            <input type="text" name="secret" id="login" class="fadeIn second" placeholder="secret" [(ngModel)]="secret"/>
+            <input type="submit" class="fadeIn fourth" value="Apply" (click)="apply()" />
+        </form>
+    </div>
+</div>

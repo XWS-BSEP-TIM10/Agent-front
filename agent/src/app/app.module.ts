@@ -24,6 +24,7 @@ import { AccountActivatedComponent } from './account-activated/account-activated
 import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
 import { PasswordlessLoginComponent } from './passwordless-login/passwordless-login.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { TwoFactorComponent } from './two-factor/two-factor.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     AccountActivatedComponent,
     AccountRecoveryComponent,
     PasswordlessLoginComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    TwoFactorComponent
   ],
   imports: [
     BrowserModule,

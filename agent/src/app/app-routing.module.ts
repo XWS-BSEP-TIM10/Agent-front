@@ -21,6 +21,7 @@ import { AccountActivatedComponent } from './account-activated/account-activated
 import { AccountRecoveryComponent } from './account-recovery/account-recovery.component';
 import { PasswordlessLoginComponent } from './passwordless-login/passwordless-login.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { TwoFactorComponent } from './two-factor/two-factor.component';
 
 const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
 { path: 'login', component: LoginComponent },
@@ -41,7 +42,8 @@ const routes: Routes = [{ path: '', component: FrontPageComponentComponent },
 { path: 'confirm/:token', component: AccountActivatedComponent},
 { path: 'recover/:token', component: AccountRecoveryComponent},
 { path: 'login/password-less/:token', component: PasswordlessLoginComponent},
-{ path: 'change-password', component: ChangePasswordComponent, canActivate:[AuthenticationGuard]}
+{ path: 'change-password', component: ChangePasswordComponent, canActivate:[AuthenticationGuard]},
+{ path: 'two-factor', component: TwoFactorComponent, canActivate:[AuthenticationGuard]}
 ];
 
 @NgModule({
