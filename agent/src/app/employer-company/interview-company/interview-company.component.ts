@@ -16,17 +16,6 @@ export class InterviewCompanyComponent implements OnInit {
   rating = 0
   isOwner: boolean | undefined;
   interviewDiv: boolean = false;
-  /* comment: any = {
-     id : '1',
-     title: "Bulevar oslobodjenja 10, Novi Sad",
-     positive: "like.com",
-     negative: "032/12332-123",
-     position: "Developer",
-     rating: 3,
-     creationDate: "7.6.2010."
-   }
- 
-    comments: Array<Comment>*/
 
   isSubmitted: boolean = false;
   interviewComments: InterviewReview = [];
@@ -74,10 +63,10 @@ export class InterviewCompanyComponent implements OnInit {
     }
 
     console.log(addInterviewDTO)
-    this.interviewService.addInterview(addInterviewDTO).subscribe((response) => {
+    this.interviewService.addInterview(addInterviewDTO).subscribe((_response) => {
       this.ngOnInit();
     },
-      (error) => {
+      (_error) => {
         alert("An error occurred... Please try again!")
       })
     this.addInterviewForm.get('title')?.setValue("")
@@ -94,4 +83,4 @@ export class InterviewCompanyComponent implements OnInit {
 
 }
 
-type InterviewReview = Array<{ id: number; title: string; hrInterview: string; techInterview: string; position: string; rating: number; creationDate: String }>;
+type InterviewReview = Array<{ id: number; title: string; hrInterview: string; techInterview: string; position: string; rating: number; creationDate: string }>;

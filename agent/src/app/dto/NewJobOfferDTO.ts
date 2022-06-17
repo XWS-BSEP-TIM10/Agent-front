@@ -1,7 +1,7 @@
 export interface NewJobOfferDTO {
-    title: String
-    position: String
-    description: String
-    companyId: String
+    title: string
+    position: string
+    description: string
+    companyId: string
     requirements: []
 }

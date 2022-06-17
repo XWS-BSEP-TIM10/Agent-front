@@ -7,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPageComponent implements OnInit {
 
-  constructor() { }
+  constructor() { /* constructor is empty */ }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { /* ngOnInit is empty */ }
 
   getInitials(firstName: string, lastName: string) {
     return firstName.charAt(0) + lastName.charAt(0)

@@ -3,8 +3,6 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo"><img src="/assets/img/logo.jpg" alt="" class="img-fluid"></a>
-      <!-- Uncomment below if you prefer to use text as a logo -->
-      <!-- <h1 class="logo"><a href="index.html">Butterfly</a></h1> -->
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -15,15 +13,13 @@
           <li *ngIf="isLoggedIn()"><a class="nav-link scrollto" routerLink="/two-factor" style="cursor: pointer;">Two factor</a></li>
           <li *ngIf="isOwner()"><a class="nav-link scrollto " routerLink="/api-token" style="cursor: pointer;">Api token</a></li>
           <li *ngIf="!isAdmin() && isLoggedIn()"><a class="nav-link scrollto " (click) = "changeRoute()" style="cursor: pointer;">For employers</a></li>
-          <!--<li><a class="nav-link scrollto " routerLink="/home" *ngIf="isLoggedIn()" style="cursor: pointer;">Home</a></li>-->
-          <!--<li><a class="nav-link scrollto" (click)="goToUsersPage()" *ngIf="isLoggedIn()" style="cursor: pointer;">Profile</a></li>-->
           <div class="vl"></div>
           <li *ngIf="!isLoggedIn()"><a class="nav-link scrollto" (click)="registration()" style="cursor: pointer;">Join now</a></li>
           <li *ngIf="!isLoggedIn()"><a class="nav-link scrollto " (click)="login()" style="cursor: pointer;">Sign in</a></li>
           <li *ngIf="isLoggedIn()"><a class="nav-link scrollto " (click)="logout()" style="cursor: pointer;">Log out</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
 
     </div>
-  </header><!-- End Header -->
+  </header>

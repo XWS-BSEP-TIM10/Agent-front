@@ -67,10 +67,10 @@ export class JobsCompanyComponent implements OnInit {
     this.jobOfferService.addJobOffer(newJobOfferDTO).subscribe((response: any) => {
       if (this.addJobForm.get('dislinkt')?.value) {
 
-        this.jobOfferService.shareJobOffer(response.id).subscribe((response) => {
-
+        this.jobOfferService.shareJobOffer(response.id).subscribe((_response) => {
+          /* Response is empty */
         },
-          (error) => {
+          (_error) => {
             alert("Api token not found!")
           })
       }
@@ -80,7 +80,7 @@ export class JobsCompanyComponent implements OnInit {
       this.addJobForm.get('requirement')?.setValue("")
       this.addJobForm.get('dislinkt')?.setValue("")
       this.requirements = []
-      
+
       this.jobOfferService.getJobOffers(this.companyId).subscribe((data: any) => {
         this.jobOffers = data;
       })

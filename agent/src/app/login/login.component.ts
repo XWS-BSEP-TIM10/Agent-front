@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginDTO } from '../dto/LoginDTO';
-import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../service/authentication.service';
 import { StorageService } from '../service/storage.service';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -28,8 +27,7 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.emailRecoveryForm.controls; }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { /* ngOnInit is empty */ }
 
   login() {
     this.router.navigate(['login']);
@@ -89,9 +87,9 @@ export class LoginComponent implements OnInit {
     this.forgottenPassword = false;
     var email = encodeURI(this.emailRecoveryForm.get('email')?.value);
     this.authService.sendRecoveryEmail(email).subscribe(
-      (data: any) => {
+      (_data: any) => {
         alert("Recovery link sent to your mail")
-      }, (err: Error) => {
+      }, (_err: Error) => {
         alert("User with this email does not exist...")
       });
   }
@@ -104,9 +102,9 @@ export class LoginComponent implements OnInit {
     this.passwordless = false;
     var email = encodeURI(this.emailRecoveryForm.get('email')?.value);
     this.authService.sendPasswordlessLoginEmail(email).subscribe(
-      (data: any) => {
+      (_data: any) => {
         alert("Link for passwordless login sent to your mail")
-      }, (err: Error) => {
+      }, (_err: Error) => {
         alert("User with this email does not exist...")
       });
   }

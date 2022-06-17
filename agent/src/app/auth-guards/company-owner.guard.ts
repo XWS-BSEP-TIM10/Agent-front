@@ -11,9 +11,9 @@ export class CompanyOwnerGuard implements CanActivate {
 
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.storageService.getRoleFromToken() === 'ROLE_COMPANY_OWNER')
+    _route: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    if(this.storageService.getRoleFromToken() === 'ROLE_COMPANY_OWNER')
       return true
     this.router.navigate(['/']);
     return false

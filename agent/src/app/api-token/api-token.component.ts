@@ -22,8 +22,7 @@ export class ApiTokenComponent implements OnInit {
 
   constructor(private tokenService: TokenService, private router: Router, private storageService: StorageService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { /* 'ngOnInit is empty */ }
 
   addToken() {
     this.isSubmitted = true;
@@ -34,11 +33,11 @@ export class ApiTokenComponent implements OnInit {
       apiToken: this.tokenForm.get('token')?.value
     }
 
-    this.tokenService.addToken(apiTokenDTO).subscribe((response) => {
+    this.tokenService.addToken(apiTokenDTO).subscribe((_response) => {
       alert("Token saved successfully")
       this.router.navigateByUrl('/employer-company/' + this.storageService.getCompanyIdFromToken())
     },
-      (error) => {
+      (_error) => {
         alert("An error occurred... Please try again!")
       })
     this.tokenForm.get('token')?.setValue("")

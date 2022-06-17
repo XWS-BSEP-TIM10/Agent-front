@@ -9,8 +9,8 @@ import { StorageService } from '../service/storage.service';
 export class AuthenticationGuard implements CanActivate {
   constructor(private storageService: StorageService, private router: Router) { }
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    _route: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const expDate = new Date(this.storageService.getExpirationDateFromToken() * 1000)
     if (Boolean(this.storageService.getToken()) && expDate > new Date())
       return true

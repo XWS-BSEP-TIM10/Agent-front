@@ -36,17 +36,6 @@ export class CommentsCompanyComponent implements OnInit {
 
   companyId: any;
   isSubmitted = false;
- /* comment: any = {
-    id : '1',
-    title: "Bulevar oslobodjenja 10, Novi Sad",
-    positive: "like.com",
-    negative: "032/12332-123",
-    position: "Developer",
-    rating: 3,
-    creationDate: "7.6.2010."
-  }
-
-   comments: Array<Comment>*/
 
    comments: any;
 
@@ -95,7 +84,7 @@ export class CommentsCompanyComponent implements OnInit {
     }
 
 
-    this.commentService.addComment(newCommentDTO).subscribe((response) => {
+    this.commentService.addComment(newCommentDTO).subscribe((_response) => {
         this.commentService.getComments(this.companyId).subscribe((data: any) => {
           this.comments = data;
           this.addingComment = false;

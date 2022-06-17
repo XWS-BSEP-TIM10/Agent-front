@@ -1,6 +1,6 @@
 import { config } from "src/shared"
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { RegisterCompanyDTO } from "../dto/RegisterCompanyDTO";
 import { UpdateCompanyDTO } from "../dto/UpdateCompanyDTO";
 
