@@ -1,9 +1,9 @@
 export interface RegisterCompanyDTO {
-    ownerId: String
-    name: String
-    address: String
-    website: String
-    phoneNumber: String
-    email: String
-    description: String
+    ownerId: string
+    name: string
+    address: string
+    website: string
+    phoneNumber: string
+    email: string
+    description: string
 }

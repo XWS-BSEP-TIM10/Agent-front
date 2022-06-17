@@ -11,9 +11,9 @@ export class UserGuard implements CanActivate {
 
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.storageService.getRoleFromToken() === 'ROLE_USER')
+    _route: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    if(this.storageService.getRoleFromToken() === 'ROLE_USER')
       return true
     this.router.navigate(['/']);
     return false

@@ -23,17 +23,17 @@ export class RegistrationRequestsComponent implements OnInit {
   }
 
   activateCompany(companyId: string) {
-    this.companyService.activateCompany(companyId).subscribe((data: any) => {
+    this.companyService.activateCompany(companyId).subscribe((_data: any) => {
       this.loadCompanies()
-    }, (err: Error) => {
+    }, (_err: Error) => {
       alert('An error occured... Please try again!')
     })
   }
 
   deleteCompany(companyId: string) {
-    this.companyService.deleteCompany(companyId).subscribe((data: any) => {
+    this.companyService.deleteCompany(companyId).subscribe((_data: any) => {
       this.loadCompanies()
-    }, (err: Error) => {
+    }, (_err: Error) => {
       alert('An error occured... Please try again!')
     })
   }

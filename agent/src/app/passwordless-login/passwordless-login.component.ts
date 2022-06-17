@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../service/authentication.service';
 import { StorageService } from '../service/storage.service';
-import { Router} from '@angular/router';
-import { ActivatedRoute } from '@angular/router'; 
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-passwordless-login',
@@ -24,10 +23,16 @@ export class PasswordlessLoginComponent implements OnInit {
           case 'ROLE_USER':
             this.router.navigateByUrl('/companies')
             break
+          case 'ROLE_COMPANY_OWNER':
+            this.router.navigateByUrl('/employer-company/' + this.storageService.getCompanyIdFromToken())
+            break;
+          case 'ROLE_ADMIN':
+              this.router.navigateByUrl('/registration-requests')
+              break;
           default:
             this.router.navigateByUrl('/')
         }
-      }, (err: Error) => {
+      }, (_err: Error) => {
         this.passwordlessSucceeded = false;
       });
   }

@@ -1,8 +1,8 @@
 export interface AddInterviewDTO {
     title: string
-    hrInterview: String
-    techInterview: String
-    position: String
-    candidateId: String
-    companyId: String
+    hrInterview: string
+    techInterview: string
+    position: string
+    candidateId: string
+    companyId: string
 }

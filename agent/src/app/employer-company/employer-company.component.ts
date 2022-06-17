@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Injectable } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CompanyService } from '../service/company.service';
@@ -36,7 +35,7 @@ export class EmployerCompanyComponent implements OnInit {
   ngOnInit(): void {
     let id = decodeURI(this.route.snapshot.paramMap.get('id') || "")
     this.checkIfUserIsOwner(id)
-    this.checkIfCompanyIsApproved(id)
+    this.checkIfCompanyIsApproved()
     this.companyService.getCompanyById(id).subscribe((data: any) => {
       this.company = data;
     })
@@ -55,7 +54,7 @@ export class EmployerCompanyComponent implements OnInit {
     }
 
 
-    this.companyService.addCompany(registrationDTO).subscribe((response) => {
+    this.companyService.addCompany(registrationDTO).subscribe((_response) => {
       this.isApproved = false
     },
       )
@@ -80,7 +79,7 @@ export class EmployerCompanyComponent implements OnInit {
     }
   }
 
-  checkIfCompanyIsApproved(id: string){
+  checkIfCompanyIsApproved(){
     if(this.storageService.getCompanyIdFromToken() !== "-1"){
       if(this.storageService.getRoleFromToken() === 'ROLE_USER') this.isApproved = false
       else this.isApproved = true

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 import { isContainsLowercase } from '../validators/isContainsLowercase-validator'
 import { isContainsNumber } from '../validators/isContainsNumber-validator'
@@ -8,7 +8,6 @@ import { isContainsSymbol } from '../validators/isContainsSymbol-validator'
 import { isContainsUppercase } from '../validators/isContainsUppercase-validator'
 import { isValidLengthPassword } from '../validators/isValidLengthPassword-validator'
 import { isWhitespace } from '../validators/isWhitespace-validator'
-import { ActivatedRoute } from '@angular/router' 
 import { ChangePasswordDTO } from '../dto/ChangePasswordDTO'
 import { StorageService } from '../service/storage.service'
 import * as zxcvbn from 'zxcvbn'
@@ -41,8 +40,7 @@ export class ChangePasswordComponent implements OnInit {
   get f() { return this.recoveryForm.controls; }
 
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { /* ngOnInit is empty */ }
 
   checkPass() {
     let password = this.recoveryForm.get('newPassword');
@@ -96,13 +94,13 @@ export class ChangePasswordComponent implements OnInit {
       confirmPassword: this.recoveryForm.get('repeatedNewPassword')?.value
     }
     
-    this.authService.changePassword(changePasswordDTO).subscribe((data: any) => {
+    this.authService.changePassword(changePasswordDTO).subscribe((_data: any) => {
       alert("Success")
       this.recoveryForm.get('oldPassword')?.setValue('')
       this.recoveryForm.get('newPassword')?.setValue('')
       this.recoveryForm.get('repeatedNewPassword')?.setValue('')
       this.router.navigateByUrl('/companies')
-    }, (err: Error) => {
+    }, (_err: Error) => {
       this.oldPasswordError = "Wrong password!"
     })
   }
@@ -120,7 +118,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   isValid(value: any): boolean {
-    return (value.invalid && value.touched)||(value.invalid && value.touched) || (value.dirty && value.invalid) ||
+    return (value.invalid && value.touched) || (value.dirty && value.invalid) ||
       (value.untouched && this.isSubmitted);
   }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { TwoFADTO } from '../dto/TwoFADTO';
 import { AuthenticationService } from '../service/authentication.service';
 import { StorageService } from '../service/storage.service';

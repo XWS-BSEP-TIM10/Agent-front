@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../service/storage.service';
-import { EmployerCompanyComponent } from '../employer-company/employer-company.component';
 
 @Component({
   selector: 'app-navbar',
@@ -24,10 +23,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['registration']);
   }
 
-  ngOnInit(): void {
-    //console.log(this.storageService.getCompanyIdFromToken())
-    //this.companyId = this.storageService.getCompanyIdFromToken()
-  }
+  ngOnInit(): void { /* ngOnInit is empty */ }
 
   isAdmin() {
     return this.storageService.getRoleFromToken() === "ROLE_ADMIN"

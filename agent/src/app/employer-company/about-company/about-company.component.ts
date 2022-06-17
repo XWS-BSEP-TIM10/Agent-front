@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UpdateCompanyDTO } from '../../dto/UpdateCompanyDTO';
@@ -39,7 +39,6 @@ export class AboutCompanyComponent implements OnInit {
 
     this.companyService.getCompanyById(id).subscribe((data: any) => {
       this.company = data;
-      //this.company = this.employerCompanyComponent.company;
       this.isOwner = this.employerCompanyComponent.ownCurrentCompany;
       this.companyProfile.get('name')?.setValue(this.company.name)
       this.companyProfile.get('address')?.setValue(this.company.address)
@@ -70,13 +69,12 @@ export class AboutCompanyComponent implements OnInit {
       description: this.companyProfile.get('description')?.value
     }
 
-    this.companyService.updateCompany(updateDTO, this.company.id).subscribe((response) => {
+    this.companyService.updateCompany(updateDTO, this.company.id).subscribe((_response) => {
       this.ngOnInit();
       this.employerCompanyComponent.ngOnInit();
     },
-      (error) => {
+      (_error) => {
         alert("An error occurred... Please try again!")
-        //this.company = this.employerCompanyComponent.company;
         this.isOwner = this.employerCompanyComponent.ownCurrentCompany;
         this.companyProfile.get('name')?.setValue(this.company.name)
         this.companyProfile.get('address')?.setValue(this.company.address)

@@ -8,7 +8,7 @@ export class StorageService {
     window.sessionStorage.setItem('jwt', "")
   }
 
-  constructor() { }
+  constructor() {/* constructor is empty */ }
 
   storeTokenData(token: string, refreshToken: string): void {
     sessionStorage.setItem("jwt", token);
@@ -19,7 +19,7 @@ export class StorageService {
     const jwtToken = window.sessionStorage.getItem('jwt')
     if (jwtToken) {
       const tokenSplit = jwtToken.split('.')
-      const decoded = decodeURIComponent(escape(window.atob(tokenSplit[1])))
+      const decoded = decodeURIComponent(encodeURIComponent(window.atob(tokenSplit[1])))
       const obj = JSON.parse(decoded)
       return obj.companyId
     }
@@ -30,7 +30,7 @@ export class StorageService {
     const jwtToken = window.sessionStorage.getItem('jwt')
     if (jwtToken) {
       const tokenSplit = jwtToken.split('.')
-      const decoded = decodeURIComponent(escape(window.atob(tokenSplit[1])))
+      const decoded = decodeURIComponent(encodeURIComponent(window.atob(tokenSplit[1])))
       const obj = JSON.parse(decoded)
       return obj.role
     }
@@ -41,7 +41,7 @@ export class StorageService {
     const jwtToken = window.sessionStorage.getItem('jwt')
     if (jwtToken) {
       const tokenSplit = jwtToken.split('.')
-      const decoded = decodeURIComponent(escape(window.atob(tokenSplit[1])))
+      const decoded = decodeURIComponent(encodeURIComponent(window.atob(tokenSplit[1])))
       const obj = JSON.parse(decoded)
       return obj.userId
     }
@@ -55,7 +55,7 @@ export class StorageService {
     const jwtToken = window.sessionStorage.getItem('jwt')
     if (jwtToken) {
       const tokenSplit = jwtToken.split('.')
-      const decoded = decodeURIComponent(escape(window.atob(tokenSplit[1])))
+      const decoded = decodeURIComponent(encodeURIComponent(window.atob(tokenSplit[1])))
       const obj = JSON.parse(decoded)
       return obj.exp
     }
@@ -70,7 +70,7 @@ export class StorageService {
     const jwtToken = window.sessionStorage.getItem('jwt')
     if (jwtToken) {
       const tokenSplit = jwtToken.split('.')
-      const decoded = decodeURIComponent(escape(window.atob(tokenSplit[1])))
+      const decoded = decodeURIComponent(encodeURIComponent(window.atob(tokenSplit[1])))
       const obj = JSON.parse(decoded)
       return obj.sub
     }

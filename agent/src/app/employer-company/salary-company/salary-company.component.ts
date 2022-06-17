@@ -59,10 +59,10 @@ export class SalaryCompanyComponent implements OnInit {
       position: this.addSalaryForm.get('position')?.value
     }
 
-    this.salaryService.addSalary(addSalaryDTO).subscribe((response) => {
+    this.salaryService.addSalary(addSalaryDTO).subscribe((_response) => {
       this.ngOnInit();
     },
-      (error) => {
+      (_error) => {
         alert("An error occurred... Please try again!")
       })
     this.addSalaryForm.get('value')?.setValue("")

@@ -37,8 +37,7 @@ export class RegistrationComponent implements OnInit {
     confirmPassword: new UntypedFormControl('', [Validators.required])
   })
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { /* ngOnInit is empty */ }
 
   get firstName() { return this.registerForm.get('firstName'); }
   get f() { return this.registerForm.controls; }
@@ -91,7 +90,7 @@ export class RegistrationComponent implements OnInit {
     }
     console.log(registrationDTO)
 
-    this.authService.signup(registrationDTO).subscribe((response) => {
+    this.authService.signup(registrationDTO).subscribe((_response) => {
       this.router.navigateByUrl('/')
     },
       (error) => {
