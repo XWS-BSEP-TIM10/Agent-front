@@ -4,7 +4,8 @@
         <h2>Broj utisaka: {{interviewComments.length}}</h2>
     </div>
     <div *ngFor="let dataItem of interviewComments; let i = index" class="list-group">
-        <table style="width: 17%;margin-left:19.3em;zoom:1.4">
+        <table style="width: 17%;margin-left:19.3em;zoom:1.4" aria-describedby="Interview table">
+            <th style="visibility: hidden;"></th>
             <tr>
                 <td>
                     {{dataItem.title}} <br>

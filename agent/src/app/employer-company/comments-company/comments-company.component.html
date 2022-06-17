@@ -4,10 +4,12 @@
 </h2>
 </div>
 <div *ngFor="let dataItem of comments; let i = index" class="list-group">
-<table style="width: 17%;margin-left:19.3em;zoom:1.4" >
+<table style="width: 17%;margin-left:19.3em;zoom:1.4" aria-describedby="Comments table 1">
+    <th style="visibility: hidden;"></th>
     <tr>
         <td>
-<table  border="1 px solid black">
+<table  border="1 px solid black" aria-describedby="Comments table 2">
+    <th style="visibility: hidden;"></th>
     <tr style="border-bottom: 1px solid black;">
         <td style="text-align:center;padding: 0.1em;zoom:1.4"><strong>{{dataItem.rating | number : '.2-2'}}</strong></td>
     </tr>
