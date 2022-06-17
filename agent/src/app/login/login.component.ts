@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
       return
     }
     this.forgottenPassword = false;
-    var email = encodeURI(this.emailRecoveryForm.get('email')?.value);
+    const email = encodeURI(this.emailRecoveryForm.get('email')?.value);
     this.authService.sendRecoveryEmail(email).subscribe(
       (_data: any) => {
         alert("Recovery link sent to your mail")
@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
       return
     }
     this.passwordless = false;
-    var email = encodeURI(this.emailRecoveryForm.get('email')?.value);
+    const email = encodeURI(this.emailRecoveryForm.get('email')?.value);
     this.authService.sendPasswordlessLoginEmail(email).subscribe(
       (_data: any) => {
         alert("Link for passwordless login sent to your mail")

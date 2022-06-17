@@ -76,7 +76,7 @@ export class RegistrationComponent implements OnInit {
       return
     }
 
-    var password = this.registerForm.get('password')?.value;
+    const password = this.registerForm.get('password')?.value;
     const result = zxcvbn(password);
 
     if (result.score != 3 && result.score != 4) {
@@ -104,7 +104,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   togglePass(id: string, toggleId: string) {
-    var x = (document.getElementById(id) as HTMLInputElement);
+    const x = (document.getElementById(id) as HTMLInputElement);
     if (x.type === "password") {
       x.type = "text";
     } else {

@@ -9,7 +9,7 @@
         <td>
 <table  border="1 px solid black">
     <tr style="border-bottom: 1px solid black;">
-        <td style="text-align:center;padding: 0.1em;zoom:1.4"><b>{{dataItem.rating | number : '.2-2'}}</b></td>
+        <td style="text-align:center;padding: 0.1em;zoom:1.4"><strong>{{dataItem.rating | number : '.2-2'}}</strong></td>
     </tr>
     <tr>
         <td style="background-color: rgb(246,246,246)"><ngb-rating style="color:blue" [max]="5" [(rate)]="dataItem.rating" [readonly]="true">
@@ -22,7 +22,7 @@
 </td>
 <td style="padding-left:1em">
     {{dataItem.title}} <br>
-    <span style="zoom:0.7"><i>{{dataItem.creationDate}}</i></span>
+    <span style="zoom:0.7"><em>{{dataItem.creationDate}}</em></span>
 </td>
 </tr>
 </table>
@@ -32,8 +32,8 @@
     <br><br>
     <h2>Negativno</h2>
     {{dataItem.negative}}
-    <div style="margin-top:4em"><i>
-    {{dataItem.position}}</i></div>
+    <div style="margin-top:4em"><em>
+    {{dataItem.position}}</em></div>
 </div>
 </div> 
 </span>
