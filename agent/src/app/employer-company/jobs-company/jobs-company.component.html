@@ -77,7 +77,8 @@
                     style="width: 75%">
                 <button type="button" class="btn btn-primary" id="addRequirement" (click)="addRequirement()"><i
                         class="fa fa-plus" aria-hidden="true"></i></button>
-                <table class="reqTable" *ngIf="requirements.length != 0">
+                <table class="reqTable" *ngIf="requirements.length != 0" aria-describedby="Jobs table">
+                    
                     <tr class="reqHead">
                         <th class="caption">Requirements</th>
                         <th></th>
