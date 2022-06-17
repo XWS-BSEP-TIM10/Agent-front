@@ -72,7 +72,7 @@ export class ChangePasswordComponent implements OnInit {
       return
     }
     
-    var password = this.recoveryForm.get('newPassword')?.value;
+    const password = this.recoveryForm.get('newPassword')?.value;
 
     const result = zxcvbn(password);
 
@@ -80,7 +80,7 @@ export class ChangePasswordComponent implements OnInit {
       return
     }
 
-    var repeatedPassword = this.recoveryForm.get('repeatedNewPassword')?.value;
+    const repeatedPassword = this.recoveryForm.get('repeatedNewPassword')?.value;
 
     if (password != repeatedPassword) {
       this.confirmPasswordError = "The password conformation does not match";
@@ -106,7 +106,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   togglePass(id: string, toggleId: string) {
-    var x = (document.getElementById(id) as HTMLInputElement);
+    const x = (document.getElementById(id) as HTMLInputElement);
     if (x.type === "password") {
       x.type = "text";
     } else {

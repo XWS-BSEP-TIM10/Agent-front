@@ -38,10 +38,6 @@
     border-bottom: 1px solid gray;
 }
 
-body {
-    background: #f5f5f5;
-    margin-top: 20px;
-}
 
 /* ===== Career ===== */
 .career-form {
@@ -248,6 +244,8 @@ html {
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+    background: #f5f5f5;
+    margin-top: 20px;
 }
 
 a {
@@ -366,7 +364,6 @@ input[type=text],
 input[type=password],
 input[type=number] {
     background-color: #f6f6f6;
-    border: none;
     color: #0d0d0d;
     padding: 15px 32px;
     text-align: center;
